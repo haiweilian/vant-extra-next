@@ -1,0 +1,48 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vue components.",
+  "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "commit": "npx git-cz",
+    "ui:gen": "pnpm --filter=vlib-ui gen",
+    "ui:build": "pnpm --filter=vlib-ui build",
+    "ui:test": "pnpm --filter=vlib-ui test",
+    "ui:test:ui": "pnpm --filter=vlib-ui test:ui",
+    "ui:test:coverage": "pnpm --filter=vlib-ui test:coverage",
+    "docs:dev": "pnpm --filter=docs docs:dev",
+    "docs:clean": "pnpm --filter=docs docs:clean",
+    "docs:build": "pnpm --filter=docs docs:build",
+    "docs:serve": "pnpm --filter=docs docs:serve",
+    "lint:lint-staged": "lint-staged",
+    "lint:eslint": "eslint --fix --cache \"**/*.{js,jsx,ts,tsx,vue}\"",
+    "lint:stylelint": "stylelint --fix --cache \"**/*.{css,scss,less,styl,vue}\"",
+    "lint:prettier": "prettier --write  \"**/*.{css,scss,less,styl,js,jsx,ts,tsx,vue}\"",
+    "release": "pnpm --recursive --stream build && changeset publish"
+  },
+  "dependencies": {
+    "@bfehub/vlib-ui": "workspace:^1.0.0",
+    "vue": "^3.2.0"
+  },
+  "devDependencies": {
+    "@bfehub/eslint-config": "workspace:^1.0.0",
+    "@bfehub/stylelint-config": "workspace:^1.0.0",
+    "@changesets/changelog-github": "^0.4.6",
+    "@changesets/cli": "^2.24.4",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@vue/runtime-core": "^3.2.38",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.22.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.10.0",
+    "typescript": "^4.7.4",
+    "unplugin-vue-define-options": "^0.10.0"
+  }
+}
