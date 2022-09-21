@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: '@bfehub/eslint-config',
+  extends: '@bfelib/eslint-config',
 }

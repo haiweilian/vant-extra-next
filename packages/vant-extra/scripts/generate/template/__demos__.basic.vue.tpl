@@ -1,0 +1,3 @@
+<template>
+  <vae-<%= name %> />
+</template>

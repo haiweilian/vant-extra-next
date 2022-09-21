@@ -1,0 +1,16 @@
+body {
+  --vae-back-top-right: 40px;
+  --vae-back-top-bottom: 40px;
+  --vae-back-top-button-size: 40px;
+}
+
+.vae-back-top {
+  position: fixed;
+  right: var(--vae-back-top-right);
+  bottom: var(--vae-back-top-bottom);
+
+  .van-button[vae-back-top] {
+    width: var(--vae-back-top-button-size);
+    height: var(--vae-back-top-button-size);
+  }
+}

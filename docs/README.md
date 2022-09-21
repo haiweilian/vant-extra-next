@@ -1,7 +1,7 @@
 ---
 home: true
 title: Home
-heroImage: /images/hero.png
+heroImage: https://fastly.jsdelivr.net/npm/@vant/assets/logo.png
 actions:
   - text: Get Started
     link: /components/

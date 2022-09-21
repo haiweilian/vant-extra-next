@@ -1,27 +1,27 @@
 import { defineUserConfig, defaultTheme, viteBundler } from 'vuepress'
-import { codeBlockPlugin } from '@bfehub/vuepress-plugins'
+import { codeBlockPlugin } from '@bfelib/vuepress-plugins'
 import vueDefineOptions from 'unplugin-vue-define-options/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { generatePaths } from '@bfehub/vlib-ui/scripts/build/utils/rollup'
+import { generatePaths } from '@bfelib/vant-extra/scripts/build/utils/rollup'
 import * as navbar from './configs/navbar'
 import * as sidebar from './configs/sidebar'
 
 export default defineUserConfig({
-  base: '/vlib-starter/',
+  base: '/vant-extra/',
 
   pagePatterns: [
     '**/*.md',
     '!.vuepress',
     '!node_modules',
-    '../packages/vlib-ui/**/*.md',
+    '../packages/vant-extra/**/*.md',
     '!../packages/**/node_modules',
   ],
 
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: 'vlib-starter',
-      description: 'Vue3 组件库开发模板 & Vue3 组件库实践指南',
+      title: 'vant-extra',
+      description: '基于 Vant 4.x 二次开发的业务组件',
     },
   },
 
@@ -45,9 +45,9 @@ export default defineUserConfig({
   }),
 
   theme: defaultTheme({
-    logo: '/images/hero.png',
+    logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
 
-    repo: 'https://github.com/bfehub/vlib-starter',
+    repo: 'https://github.com/bfelib/vant-extra',
 
     locales: {
       '/': {
@@ -62,7 +62,7 @@ export default defineUserConfig({
   }),
 
   plugins: [
-    // @bfehub/vuepress-plugins
+    // @bfelib/vuepress-plugins
     codeBlockPlugin(),
   ],
 })

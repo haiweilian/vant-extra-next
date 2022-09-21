@@ -1,5 +1,5 @@
 {
-  "name": "@bfehub/stylelint-config",
+  "name": "@bfelib/stylelint-config",
   "private": true,
   "main": "index.js",
   "version": "1.0.0",

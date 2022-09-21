@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "bfehub/vlib-starter" }
+    { "repo": "bfelib/vant-extra" }
   ],
   "commit": false,
   "fixed": [],

@@ -1,0 +1,88 @@
+{
+  "name": "@bfelib/vant-extra",
+  "version": "0.1.0",
+  "description": "Vant extension components.",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "style": "dist/index.css",
+  "unpkg": "dist/index.min.js",
+  "jsdelivr": "dist/index.min.js",
+  "scripts": {
+    "gen": "tsx scripts/generate/component.ts",
+    "build": "gulp --require @esbuild-kit/cjs-loader -f scripts/build/index.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
+  },
+  "files": [
+    "es",
+    "lib",
+    "dist",
+    "global.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vant": "^4.0.0",
+    "vue": "^3.2.0"
+  },
+  "dependencies": {
+    "@vant/use": "^1.4.1",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.3.3",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/gulp": "^4.0.9",
+    "@types/gulp-autoprefixer": "^0.0.33",
+    "@types/gulp-clean-css": "^4.3.0",
+    "@types/gulp-sass": "^5.0.0",
+    "@types/lodash-es": "^4.17.6",
+    "@types/prompts": "^2.0.14",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "@vitest/coverage-c8": "^0.22.1",
+    "@vitest/ui": "^0.22.1",
+    "@vue/test-utils": "^2.0.2",
+    "components-helper": "^2.0.0",
+    "esbuild": "^0.15.5",
+    "execa": "^6.1.0",
+    "fast-glob": "^3.2.11",
+    "fs-extra": "^10.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "happy-dom": "^6.0.4",
+    "prompts": "^2.4.2",
+    "rollup": "^2.78.1",
+    "rollup-plugin-esbuild": "^4.9.3",
+    "sass": "^1.54.5",
+    "tsx": "^3.8.2",
+    "typescript": "^4.7.4",
+    "unplugin-vue-components": "^0.22.4",
+    "unplugin-vue-define-options": "^0.10.0",
+    "vant": "4.0.0-rc.3",
+    "vite": "^3.0.5",
+    "vitest": "^0.22.1",
+    "vue": "^3.2.37",
+    "vue-tsc": "^0.40.1"
+  },
+  "sideEffects": [
+    "dist/*",
+    "es/**/*.css",
+    "lib/**/*.scss",
+    "es/**/style/*",
+    "lib/**/style/*"
+  ],
+  "vetur": {
+    "tags": "dist/tags.json",
+    "attributes": "dist/attributes.json"
+  },
+  "web-types": "dist/web-types.json"
+}

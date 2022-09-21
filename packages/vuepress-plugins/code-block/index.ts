@@ -6,7 +6,7 @@ export const codeBlockPlugin = (): Plugin => {
   const store = new Map<string, Set<string>>()
 
   return {
-    name: '@bfehub/vuepress-plugin-code-block',
+    name: '@bfelib/vuepress-plugin-code-block',
 
     clientConfigFile: path.resolve(__dirname, './client/clientConfig.ts'),
 

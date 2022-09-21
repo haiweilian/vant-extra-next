@@ -1,5 +1,5 @@
 {
-  "name": "@bfehub/vuepress-plugins",
+  "name": "@bfelib/vuepress-plugins",
   "private": true,
   "main": "index.ts",
   "version": "1.0.0",
