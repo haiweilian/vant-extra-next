@@ -10,5 +10,10 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@bfelib/docs",
+    "@bfelib/eslint-config",
+    "@bfelib/stylelint-config",
+    "@bfelib/vuepress-plugins"
+  ]
 }
