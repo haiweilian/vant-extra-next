@@ -8,5 +8,7 @@
     "@bfelib/vant-extra": "0.1.0",
     "@bfelib/vuepress-plugins": "1.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "funny-wasps-smoke"
+  ]
 }
