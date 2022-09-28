@@ -9,6 +9,7 @@
     "@bfelib/vuepress-plugins": "1.0.0"
   },
   "changesets": [
-    "funny-wasps-smoke"
+    "funny-wasps-smoke",
+    "tall-llamas-add"
   ]
 }
