@@ -4,6 +4,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     VaeBackTop: typeof import('@bfelib/vant-extra')['BackTop']
-    VaeBackTopTsx: typeof import('@bfelib/vant-extra')['BackTopTsx']
+    VaeImage: typeof import('@bfelib/vant-extra')['Image']
+    VaeImageGroup: typeof import('@bfelib/vant-extra')['ImageGroup']
   }
 }
