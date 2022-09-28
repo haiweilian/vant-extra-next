@@ -30,6 +30,10 @@ function getSideEffects(
 
   if (!importStyle || isSSR) return
 
+  if (['image-group'].includes(dirName)) {
+    dirName = 'image'
+  }
+
   if (importStyle === 'scss') {
     return `@bfelib/vant-extra/${moduleType}/${dirName}/style/scss`
   } else {
