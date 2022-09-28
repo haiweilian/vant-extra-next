@@ -53,7 +53,7 @@ export function VaeResolver(
     type: 'component',
     resolve: (name: string) => {
       if (name.startsWith('Vae')) {
-        const partialName = name.slice(4)
+        const partialName = name.slice(3)
         return {
           name: partialName,
           from: `@bfelib/vant-extra/${moduleType}`,
