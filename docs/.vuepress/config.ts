@@ -59,6 +59,10 @@ export default defineUserConfig({
         selectLanguageAriaLabel: '选择语言',
       },
     },
+
+    themePlugins: {
+      mediumZoom: false,
+    },
   }),
 
   plugins: [

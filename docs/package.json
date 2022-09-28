@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@bfelib/vant-extra": "workspace:*",
+    "@vant/touch-emulator": "^1.4.0",
     "vant": "4.0.0-rc.3"
   },
   "devDependencies": {

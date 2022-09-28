@@ -1,0 +1,7 @@
+body {
+  --vae-image-background: black;
+}
+
+.vae-image {
+  background: var(--vae-image-background);
+}
