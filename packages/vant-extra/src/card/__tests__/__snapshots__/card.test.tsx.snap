@@ -1,0 +1,16 @@
+// Vitest Snapshot v1
+
+exports[`Card.vue > test component slots 1`] = `
+"<div class=\\"vae-card vae-card--shadow\\">
+  <div class=\\"van-image vae-card__image\\"><img src=\\"https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg\\" class=\\"van-image__img\\" style=\\"object-fit: cover;\\">
+    <div class=\\"van-image__loading\\"><i class=\\"van-badge__wrapper van-icon van-icon-photo van-image__loading-icon\\">
+        <!---->
+        <!---->
+        <!---->
+      </i></div>
+    <!---->
+  </div>
+  <div class=\\"vae-card__title\\">This is title</div>
+  <div class=\\"vae-card__desc\\">This is desc</div>This is content<div class=\\"vae-card__extra\\">This is extra</div>
+</div>"
+`;

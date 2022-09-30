@@ -21,7 +21,7 @@
     "lint:stylelint": "stylelint --fix --cache \"**/*.{css,scss,less,styl,vue}\"",
     "lint:prettier": "prettier --write  \"**/*.{css,scss,less,styl,js,jsx,ts,tsx,vue}\"",
     "version-packages": "changeset version",
-    "release": "pnpm --recursive --stream build && changeset publish"
+    "release": "pnpm --recursive --stream test:coverage && pnpm --recursive --stream build && changeset publish"
   },
   "dependencies": {
     "@bfelib/vant-extra": "workspace:*",

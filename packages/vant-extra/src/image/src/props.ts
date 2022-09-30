@@ -1,4 +1,4 @@
-import { makeStringProp, truthProp, extend } from 'vant/es/utils'
+import { truthProp, extend } from 'vant/es/utils'
 import { imageProps as vantImageProps } from 'vant'
 import type { ExtractPropTypes } from 'vue'
 import type { ImagePreviewOptions } from 'vant'
@@ -8,9 +8,9 @@ export const imageProps = extend(vantImageProps, {
   /**
    * 缩略图
    */
-  thumbnail: makeStringProp(''),
+  thumbnail: String,
   /**
-   * 是否点击展示展示预览图
+   * 是否点击展示预览图
    */
   previewImage: truthProp,
   /**
@@ -23,7 +23,7 @@ export type ImageProps = ExtractPropTypes<typeof imageProps>
 
 export const imageGroupProps = {
   /**
-   * 是否点击展示展示预览图
+   * 是否点击展示预览图
    */
   previewImage: truthProp,
   /**

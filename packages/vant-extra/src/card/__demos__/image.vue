@@ -1,0 +1,9 @@
+<template>
+  <vae-card
+    shadow
+    title="标题标题"
+    desc="描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述"
+    src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+    fit="cover"
+  />
+</template>

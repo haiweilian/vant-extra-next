@@ -13,6 +13,10 @@ export const zh: SidebarConfig = {
           text: 'Image 图片',
           link: '/components/image/',
         },
+        {
+          text: 'Card 卡片',
+          link: '/components/card/',
+        },
       ],
     },
   ],

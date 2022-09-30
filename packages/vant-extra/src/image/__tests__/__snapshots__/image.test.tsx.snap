@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`Image > render 1`] = `
+"<div class=\\"van-image\\">
+  <!---->
+  <div class=\\"van-image__loading\\"><i class=\\"van-badge__wrapper van-icon van-icon-photo van-image__loading-icon\\">
+      <!---->
+      <!---->
+      <!---->
+    </i></div>
+  <!---->
+</div>"
+`;
