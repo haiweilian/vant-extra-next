@@ -1,5 +1,11 @@
 # @bfelib/vant-extra
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- [`756c021`](https://github.com/bfelib/vant-extra/commit/756c021c3b72200a19822b2fae80694c35abe84d) Thanks [@haiweilian](https://github.com/haiweilian)! - add Card component
+
 ## 1.0.0-beta.1
 
 ### Patch Changes
