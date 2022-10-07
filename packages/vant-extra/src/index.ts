@@ -1,13 +1,15 @@
 import type { App } from 'vue'
 import { BackTop } from './back-top'
 import { Card } from './card'
+import { Form } from './form'
 import { Image, ImageGroup } from './image'
 
 export * from './back-top'
 export * from './card'
+export * from './form'
 export * from './image'
 
-const components = [BackTop, Card, Image, ImageGroup]
+const components = [BackTop, Card, Form, Image, ImageGroup]
 
 export function install(app: App) {
   components.forEach((item) => {
