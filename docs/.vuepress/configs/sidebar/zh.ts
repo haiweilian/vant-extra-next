@@ -10,12 +10,21 @@ export const zh: SidebarConfig = {
           link: '/components/backtop/',
         },
         {
+          text: 'Card 卡片',
+          link: '/components/card/',
+        },
+        {
           text: 'Image 图片',
           link: '/components/image/',
         },
+      ],
+    },
+    {
+      text: '表单组件',
+      children: [
         {
-          text: 'Card 卡片',
-          link: '/components/card/',
+          text: 'Form 表单',
+          link: '/components/form/',
         },
       ],
     },

@@ -4,7 +4,7 @@ import type { ExtractPropTypes } from 'vue'
 import type { ImagePreviewOptions } from 'vant'
 import { makeObjectProp } from '../../utils'
 
-export const imageProps = extend(vantImageProps, {
+export const imageProps = extend({}, vantImageProps, {
   /**
    * 缩略图
    */

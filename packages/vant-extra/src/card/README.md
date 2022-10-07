@@ -26,7 +26,7 @@ permalink: /components/card
 | ------ | ------------ | --------------- | ------ |
 | title  | 卡片标题     | string          | -      |
 | desc   | 卡片描述     | string          | -      |
-| shadow | 是否显示阴影 | string          | -      |
+| shadow | 是否显示阴影 | boolean         | false  |
 | src    | 图片地址     | string          | -      |
 | fit    | 图片填充模式 | string          | -      |
 | height | 图片高度     | number / string | -      |
