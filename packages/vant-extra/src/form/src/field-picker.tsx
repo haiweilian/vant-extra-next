@@ -91,6 +91,11 @@ export default defineComponent({
             ref={pickerRef}
             modelValue={model.value}
             {...getComponentProps(props.schema)}
+            columns={
+              props.schema.componentProps?.options ||
+              props.schema.componentProps?.columns ||
+              []
+            }
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

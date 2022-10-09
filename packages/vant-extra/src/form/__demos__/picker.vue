@@ -57,7 +57,7 @@ const schemas: FormSchema[] = [
     rules: [{ required: true, message: '请选择选择器' }],
     placeholder: '请选择选择器',
     componentProps: {
-      columns: [
+      options: [
         { text: '杭州', value: 'Hangzhou' },
         { text: '宁波', value: 'Ningbo' },
         { text: '温州', value: 'Wenzhou' },

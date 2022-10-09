@@ -8,13 +8,19 @@ permalink: /components/card
 
 ## 基础用法
 
+显示标题和描述。
+
 <demo src="./__demos__/basic.vue"></demo>
 
 ## 显示图片
 
+显示顶部的封面图。
+
 <demo src="./__demos__/image.vue"></demo>
 
 ## 使用插槽
+
+自定义额外的内容。
 
 <demo src="./__demos__/slot.vue"></demo>
 
