@@ -7,9 +7,13 @@ import type {
   FieldProps,
   PopoverProps,
   FieldValidationStatus,
+  DatePickerColumnType,
+  TimePickerColumnType,
 } from 'vant'
 import type { FormProps } from './props'
 import type { Recordable } from '../../utils'
+
+export type DateTimeColumnType = DatePickerColumnType | TimePickerColumnType
 
 export type FormComponentType =
   | 'Area'

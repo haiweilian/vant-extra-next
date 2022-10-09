@@ -21,22 +21,16 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    // const text = ref<string>()
     const model = ref<string | undefined>(props.modelValue)
     const [visible, toggle] = useToggle()
 
     useCustomFieldValue(() => model.value)
 
-    const onConfirm = ({
-      selectedValues,
-    }: // selectedOptions,
-    PickerConfirmEventParams) => {
+    const onConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
       toggle(false)
 
       model.value = selectedValues.join('-')
       emit('update:modelValue', model.value)
-
-      // text.value = selectedOptions.map((option) => option?.text).join('-')
     }
 
     watch(
@@ -63,8 +57,8 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <DatePicker
-            modelValue={model.value ? model.value.split('-') : []}
             {...getComponentProps(props.schema)}
+            modelValue={model.value ? model.value.split('-') : []}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

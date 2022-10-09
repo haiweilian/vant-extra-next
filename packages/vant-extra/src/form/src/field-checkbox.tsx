@@ -11,6 +11,7 @@ export interface CheckboxOptions {
   text: number | string
   value: number | string
   disabled?: boolean
+  [x: PropertyKey]: unknown
 }
 
 export default defineComponent({
@@ -24,16 +25,12 @@ export default defineComponent({
   },
 
   setup(props) {
-    // const model = ref<any[]>()
     const options = ref<CheckboxOptions[]>(
       props.schema.componentProps?.options || []
     )
 
     return () => (
-      <CheckboxGroup
-        // v-model={model.value}
-        {...omit(getComponentProps(props.schema), ['options'])}
-      >
+      <CheckboxGroup {...omit(getComponentProps(props.schema), ['options'])}>
         <Space wrap>
           {options.value.map((item) => (
             <Checkbox name={item.value} disabled={item.disabled} shape="square">

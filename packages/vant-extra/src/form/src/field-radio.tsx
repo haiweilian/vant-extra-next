@@ -11,6 +11,7 @@ export interface RadioOptions {
   text: number | string
   value: number | string
   disabled?: boolean
+  [x: PropertyKey]: unknown
 }
 
 export default defineComponent({
@@ -24,16 +25,12 @@ export default defineComponent({
   },
 
   setup(props) {
-    // const model = ref<any>()
     const options = ref<RadioOptions[]>(
       props.schema.componentProps?.options || []
     )
 
     return () => (
-      <RadioGroup
-        // v-model={model.value}
-        {...omit(getComponentProps(props.schema), ['options'])}
-      >
+      <RadioGroup {...omit(getComponentProps(props.schema), ['options'])}>
         <Space wrap>
           {options.value.map((item) => (
             <Radio name={item.value} disabled={item.disabled}>

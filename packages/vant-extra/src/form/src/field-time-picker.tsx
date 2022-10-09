@@ -57,8 +57,8 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <TimePicker
-            modelValue={model.value ? model.value.split(':') : []}
             {...getComponentProps(props.schema)}
+            modelValue={model.value ? model.value.split(':') : []}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

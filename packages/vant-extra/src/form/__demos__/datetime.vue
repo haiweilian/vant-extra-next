@@ -77,11 +77,9 @@ const schemas: FormSchema[] = [
     required: true,
     rules: [{ required: true, message: '请选择日期时间' }],
     componentProps: {
-      tabs: ['选择日期', '选择时间'],
-      columnsType: [
-        ['year', 'month', 'day'],
-        ['hour', 'minute', 'second'],
-      ],
+      // tabs: ['选择日期', '选择时间'],
+      // columnsType: ['year', 'month', 'hour', 'minute'],
+      // columnsType: ['year', 'month', 'day', 'hour', 'minute', 'second'],
     },
   },
 ]

@@ -1,5 +1,6 @@
 import { defineComponent, ref, watch, computed } from 'vue'
 import { Popup, Picker } from 'vant'
+import { omit } from 'lodash-es'
 import type { PropType } from 'vue'
 import type { PickerOption, PickerConfirmEventParams } from 'vant'
 import { numericProp, type Numeric } from 'vant/es/utils'
@@ -92,13 +93,13 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <Picker
-            modelValue={model.value ? [model.value] : []}
-            {...getComponentProps(props.schema)}
+            {...omit(getComponentProps(props.schema), ['options'])}
             columns={
               props.schema.componentProps?.options ||
               props.schema.componentProps?.columns ||
               []
             }
+            modelValue={model.value ? [model.value] : []}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

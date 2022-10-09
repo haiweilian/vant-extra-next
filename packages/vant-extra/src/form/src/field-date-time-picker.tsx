@@ -1,4 +1,5 @@
-import { defineComponent, ref, watch, type PropType } from 'vue'
+import { defineComponent, ref, watch, computed, type PropType } from 'vue'
+import { isString, isArray, pick, intersection } from 'lodash-es'
 import {
   Popup,
   PickerGroup,
@@ -8,8 +9,11 @@ import {
   timePickerProps,
   pickerGroupProps,
 } from 'vant'
-import type { PickerConfirmEventParams } from 'vant'
-import { pick } from 'lodash-es'
+import type {
+  DatePickerColumnType,
+  TimePickerColumnType,
+  PickerConfirmEventParams,
+} from 'vant'
 import { useToggle, useCustomFieldValue } from '@vant/use'
 import { createNamespace } from '../../utils'
 import { getPopupProps, getComponentProps } from './utils'
@@ -38,6 +42,23 @@ export default defineComponent({
 
     useCustomFieldValue(() => model.value)
 
+    const dateType: DatePickerColumnType[] = ['year', 'month', 'day']
+    const timeType: TimePickerColumnType[] = ['hour', 'minute', 'second']
+
+    const columnsType = computed<
+      [DatePickerColumnType[], TimePickerColumnType[]]
+    >(() => {
+      const _columnsType = getComponentProps(props.schema).columnsType
+      if (isArray(_columnsType)) {
+        return [
+          intersection(_columnsType, dateType),
+          intersection(_columnsType, timeType),
+        ]
+      } else {
+        return [dateType, timeType]
+      }
+    })
+
     const onConfirm = ([
       { selectedValues: dateSelectedValues },
       { selectedValues: timeSelectedValues },
@@ -54,7 +75,7 @@ export default defineComponent({
       () => props.modelValue,
       (newVal) => {
         model.value = newVal
-        if (typeof newVal === 'string') {
+        if (isString(newVal)) {
           const [dateVal, timeVal] = newVal.split(' ')
           modelDate.value = dateVal
           modelTime.value = timeVal
@@ -80,6 +101,7 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <PickerGroup
+            tabs={['选择日期', '选择时间']}
             {...pick(
               getComponentProps(props.schema),
               Object.keys(pickerGroupProps)
@@ -88,24 +110,20 @@ export default defineComponent({
             onConfirm={onConfirm}
           >
             <DatePicker
-              modelValue={modelDate.value ? modelDate.value.split('-') : []}
               {...pick(
                 getComponentProps(props.schema),
                 Object.keys(datePickerProps)
               )}
-              columnsType={
-                (getComponentProps(props.schema) as any).columnsType?.[0]
-              }
+              modelValue={modelDate.value ? modelDate.value.split('-') : []}
+              columnsType={columnsType.value[0]}
             />
             <TimePicker
-              modelValue={modelTime.value ? modelTime.value.split(':') : []}
               {...pick(
                 getComponentProps(props.schema),
                 Object.keys(timePickerProps)
               )}
-              columnsType={
-                (getComponentProps(props.schema) as any).columnsType?.[1]
-              }
+              modelValue={modelTime.value ? modelTime.value.split(':') : []}
+              columnsType={columnsType.value[1]}
             />
           </PickerGroup>
         </Popup>
