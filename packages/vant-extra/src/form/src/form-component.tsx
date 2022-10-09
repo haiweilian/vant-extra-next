@@ -6,6 +6,7 @@ import Calendar from './field-calendar'
 import Cascader from './field-cascader'
 import Checkbox from './field-checkbox'
 import DatePicker from './field-date-picker'
+import DateTimePicker from './field-date-time-picker'
 import Picker from './field-picker'
 import Radio from './field-radio'
 import Select from './field-select'
@@ -18,6 +19,7 @@ formComponentMap.set('Calendar', Calendar)
 formComponentMap.set('Cascader', Cascader)
 formComponentMap.set('Checkbox', Checkbox)
 formComponentMap.set('DatePicker', DatePicker)
+formComponentMap.set('DateTimePicker', DateTimePicker)
 formComponentMap.set('Divider', Divider)
 formComponentMap.set('Field', Field)
 formComponentMap.set('Picker', Picker)

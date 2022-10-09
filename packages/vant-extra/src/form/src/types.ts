@@ -17,6 +17,7 @@ export type FormComponentType =
   | 'Cascader'
   | 'Checkbox'
   | 'DatePicker'
+  | 'DateTimePicker'
   | 'Divider'
   | 'Field'
   | 'Picker'

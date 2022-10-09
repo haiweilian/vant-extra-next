@@ -28,7 +28,7 @@ permalink: /components/form
 
 基础用法基础用法基础用法基础用法基础用法基础用法。
 
-<!-- <demo src="./__demos__/datetime.vue"></demo> -->
+<demo src="./__demos__/datetime.vue"></demo>
 
 ## 其他表单
 

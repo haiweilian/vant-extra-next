@@ -1,8 +1,8 @@
 import dayjs from 'dayjs/esm/index'
-import { defineComponent, ref, type PropType } from 'vue'
+import { defineComponent, ref, watch, type PropType } from 'vue'
 import { Calendar } from 'vant'
+import { isString, isArray } from 'lodash-es'
 import { useToggle, useCustomFieldValue } from '@vant/use'
-import { isDate, isString } from 'lodash-es'
 import { createNamespace } from '../../utils'
 import { getPopupProps, getComponentProps } from './utils'
 import type { FormSchema } from './types'
@@ -17,27 +17,50 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
+    modelValue: [String, Array] as PropType<string | string[]>,
   },
 
-  setup(props) {
+  emits: ['update:modelValue'],
+
+  setup(props, { emit }) {
     const text = ref<string>()
-    const model = ref<string[] | string>()
+    const model = ref<string | string[] | undefined>(props.modelValue)
+    const defaultDate = ref<Date[] | Date | undefined>()
     const [visible, toggle] = useToggle()
 
     useCustomFieldValue(() => model.value)
 
     const format = 'YYYY-MM-DD'
-    const onConfirm = (date: Date | Date[]) => {
+
+    const onConfirm = (dates: Date | Date[]) => {
       toggle(false)
 
-      const dates = isDate(date)
-        ? dayjs(date).format(format)
-        : date.map((d) => dayjs(d).format(format))
+      defaultDate.value = dates
 
-      model.value = dates
+      const values = isArray(dates)
+        ? dates.map((date) => dayjs(date).format(format))
+        : dayjs(dates).format(format)
 
-      text.value = isString(dates) ? dates : dates.join('/')
+      model.value = values
+      emit('update:modelValue', values)
+
+      text.value = isArray(values) ? values.join('/') : values
     }
+
+    watch(
+      () => props.modelValue,
+      (newVal) => {
+        model.value = newVal
+        if (isString(newVal)) {
+          text.value = newVal
+          defaultDate.value = dayjs(newVal).toDate()
+        } else if (isArray(newVal)) {
+          text.value = newVal.join('/')
+          defaultDate.value = newVal.map((date) => dayjs(date).toDate())
+        }
+      },
+      { immediate: true }
+    )
 
     return () => (
       <>
@@ -52,6 +75,7 @@ export default defineComponent({
         />
         <Calendar
           v-model:show={visible.value}
+          defaultDate={defaultDate.value}
           {...getPopupProps(props.schema)}
           {...getComponentProps(props.schema)}
           onConfirm={onConfirm}

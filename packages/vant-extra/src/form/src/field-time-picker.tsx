@@ -1,4 +1,4 @@
-import { defineComponent, ref, type PropType } from 'vue'
+import { defineComponent, ref, watch, type PropType } from 'vue'
 import { Popup, TimePicker, type PickerConfirmEventParams } from 'vant'
 import { useToggle, useCustomFieldValue } from '@vant/use'
 import { createNamespace } from '../../utils'
@@ -15,20 +15,30 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
+    modelValue: String,
   },
 
-  setup(props) {
-    const text = ref<string>()
-    const model = ref<string[]>()
+  emits: ['update:modelValue'],
+
+  setup(props, { emit }) {
+    const model = ref<string | undefined>(props.modelValue)
     const [visible, toggle] = useToggle()
 
     useCustomFieldValue(() => model.value)
 
-    const onConfirm = ({ selectedOptions }: PickerConfirmEventParams) => {
+    const onConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
       toggle(false)
 
-      text.value = selectedOptions.map((option) => option?.text).join('-')
+      model.value = selectedValues.join(':')
+      emit('update:modelValue', model.value)
     }
+
+    watch(
+      () => props.modelValue,
+      (newVal) => {
+        model.value = newVal
+      }
+    )
 
     return () => (
       <>
@@ -36,7 +46,7 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={text.value}
+          value={model.value}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
@@ -47,7 +57,7 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <TimePicker
-            v-model={model.value}
+            modelValue={model.value ? model.value.split(':') : []}
             {...getComponentProps(props.schema)}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}

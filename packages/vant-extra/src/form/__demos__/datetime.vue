@@ -22,10 +22,11 @@ onMounted(() => {
   // console.log(formRef.value)
 
   formRef.value?.setValues({
-    calendar: '2022-10-08',
-    calendar_2: ['2022-10-08', '2022-10-15'],
-    date_picker: ['2022', '10', '08'],
-    time_picker: ['12', '00'],
+    calendar: '2022-10-10',
+    calendar_2: ['2022-10-10', '2022-10-15'],
+    date_picker: '2022-10-10',
+    time_picker: '12:30:30',
+    date_time_picker: '2022-10-10 12:30:30',
   })
 })
 
@@ -37,9 +38,6 @@ const schemas: FormSchema[] = [
     placeholder: '请选择日历',
     required: true,
     rules: [{ required: true, message: '请选择日历' }],
-    componentProps: {
-      title: '标题',
-    },
   },
   {
     label: '范围日历',
@@ -49,7 +47,6 @@ const schemas: FormSchema[] = [
     required: true,
     rules: [{ required: true, message: '请选择范围日历' }],
     componentProps: {
-      title: '标题',
       type: 'range',
     },
   },
@@ -68,6 +65,24 @@ const schemas: FormSchema[] = [
     placeholder: '请选择时间',
     required: true,
     rules: [{ required: true, message: '请选择时间' }],
+    componentProps: {
+      columnsType: ['hour', 'minute', 'second'],
+    },
+  },
+  {
+    label: '日期时间',
+    name: 'date_time_picker',
+    component: 'DateTimePicker',
+    placeholder: '请选择日期时间',
+    required: true,
+    rules: [{ required: true, message: '请选择日期时间' }],
+    componentProps: {
+      tabs: ['选择日期', '选择时间'],
+      columnsType: [
+        ['year', 'month', 'day'],
+        ['hour', 'minute', 'second'],
+      ],
+    },
   },
 ]
 
