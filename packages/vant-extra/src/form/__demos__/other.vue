@@ -20,7 +20,7 @@ import type { FormSchema, FormAction } from '@bfelib/vant-extra'
 
 const formRef = ref<FormAction>()
 onMounted(() => {
-  console.log(formRef.value)
+  // console.log(formRef.value)
 
   formRef.value?.setValues({
     area: '120106',

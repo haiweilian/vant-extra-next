@@ -22,6 +22,7 @@ export type FormComponentType =
   | 'Picker'
   | 'Radio'
   | 'Rate'
+  | 'Select'
   | 'Slider'
   | 'Stepper'
   | 'Switch'

@@ -19,7 +19,7 @@ import type { FormSchema, FormAction } from '@bfelib/vant-extra'
 
 const formRef = ref<FormAction>()
 onMounted(() => {
-  console.log(formRef.value)
+  // console.log(formRef.value)
 
   formRef.value?.setValues({
     calendar: '2022-10-08',

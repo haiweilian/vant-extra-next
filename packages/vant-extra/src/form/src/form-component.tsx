@@ -8,6 +8,7 @@ import Checkbox from './field-checkbox'
 import DatePicker from './field-date-picker'
 import Picker from './field-picker'
 import Radio from './field-radio'
+import Select from './field-select'
 import TimePicker from './field-time-picker'
 
 export const formComponentMap = new Map<FormComponentType, Component>()
@@ -22,6 +23,7 @@ formComponentMap.set('Field', Field)
 formComponentMap.set('Picker', Picker)
 formComponentMap.set('Radio', Radio)
 formComponentMap.set('Rate', Rate)
+formComponentMap.set('Select', Select)
 formComponentMap.set('Slider', Slider)
 formComponentMap.set('Stepper', Stepper)
 formComponentMap.set('Switch', Switch)

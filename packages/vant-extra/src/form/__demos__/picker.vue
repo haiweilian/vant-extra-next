@@ -19,18 +19,40 @@ import type { FormSchema, FormAction } from '@bfelib/vant-extra'
 
 const formRef = ref<FormAction>()
 onMounted(() => {
-  console.log(formRef.value)
+  // console.log(formRef.value)
 
   formRef.value?.setValues({
-    picker: ['Ningbo'],
+    select: 'Shaoxing',
+    picker: ['Wenzhou'],
+    picker_2: ['Friday', 'Morning'],
+    picker_3: ['Fujian', 'Fuzhou', 'Gulou'],
   })
 })
 
 const schemas: FormSchema[] = [
   {
+    label: '下拉选择',
+    name: 'select',
+    component: 'Select',
+    isLink: true,
+    required: true,
+    rules: [{ required: true, message: '请选择下拉选择' }],
+    placeholder: '请选择下拉选择',
+    componentProps: {
+      options: [
+        { text: '杭州', value: 'Hangzhou' },
+        { text: '宁波', value: 'Ningbo' },
+        { text: '温州', value: 'Wenzhou' },
+        { text: '绍兴', value: 'Shaoxing' },
+        { text: '湖州', value: 'Huzhou' },
+      ],
+    },
+  },
+  {
     label: '单列选择器',
     name: 'picker',
     component: 'Picker',
+    isLink: true,
     required: true,
     rules: [{ required: true, message: '请选择选择器' }],
     placeholder: '请选择选择器',
@@ -48,6 +70,7 @@ const schemas: FormSchema[] = [
     label: '多列选择器',
     name: 'picker_2',
     component: 'Picker',
+    isLink: true,
     required: true,
     rules: [{ required: true, message: '请选择多列选择器' }],
     placeholder: '请选择多列选择器',
@@ -72,6 +95,7 @@ const schemas: FormSchema[] = [
     label: '级联选择器',
     name: 'picker_3',
     component: 'Picker',
+    isLink: true,
     required: true,
     rules: [{ required: true, message: '请选择级联选择器' }],
     placeholder: '请选择级联选择器',
