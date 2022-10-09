@@ -1,3 +1,4 @@
+import type { ComponentPublicInstance } from 'vue'
 import type { Numeric } from 'vant/es/utils'
 import type {
   CellArrowDirection,
@@ -5,7 +6,10 @@ import type {
   FieldTextAlign,
   FieldProps,
   PopoverProps,
+  FieldValidationStatus,
 } from 'vant'
+import type { FormProps } from './props'
+import type { Recordable } from '../../utils'
 
 export type FormComponentType =
   | 'Area'
@@ -88,5 +92,23 @@ export interface FormSchema {
   /**
    * 组件属性配置
    */
-  componentProps?: Record<string, any>
+  componentProps?: Recordable
 }
+
+export interface FormAction {
+  submit: () => void
+  scrollToField: (name: string, options?: boolean) => void
+  getValues: () => Recordable
+  setValues: (values: Recordable) => void
+  resetValues: () => void
+  validate: (name?: string | string[]) => Promise<void>
+  resetValidation: (name?: string | string[]) => void
+  getValidationStatus: () => Recordable<FieldValidationStatus>
+  setProps: () => void
+  getSchema: () => void
+  resetSchema: () => void
+  updateSchema: () => void
+  removeSchema: () => void
+}
+
+export type FormInstance = ComponentPublicInstance<FormProps, FormAction>

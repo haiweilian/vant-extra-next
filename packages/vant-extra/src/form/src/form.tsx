@@ -1,10 +1,12 @@
-import { defineComponent, reactive, ref } from 'vue'
-import { Form, Field } from 'vant'
+import { defineComponent, reactive, ref, type Ref } from 'vue'
+import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
+import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace } from '../../utils'
 import { formProps } from './props'
 import { formComponentMap } from './form-component'
 import { getFieldProps, getComponentProps } from './utils'
-import type { FormSchema } from './types'
+import { useFormAction } from './form-use-action'
+import type { FormSchema, FormAction } from './types'
 
 const [name] = createNamespace('form')
 
@@ -15,7 +17,9 @@ export default defineComponent({
 
   setup(props, { slots }) {
     const formModel = reactive<any>({})
-    const schemas = ref(props.schemas)
+
+    const formElRef = ref<VantFormInstance>()
+    const schemaRef = ref(props.schemas)
 
     const getFormItem = (schema: FormSchema) => {
       const FormItem = formComponentMap.get(schema.component)
@@ -49,9 +53,20 @@ export default defineComponent({
       }
     }
 
+    const actions = useFormAction({
+      props,
+      formModel,
+      formElRef: formElRef as Ref<VantFormInstance>,
+      schemaRef,
+    })
+
+    useExpose<FormAction>({
+      ...actions,
+    })
+
     return () => (
-      <Form>
-        {schemas.value.map((schema) => getFormItem(schema))}
+      <Form ref={formElRef}>
+        {schemaRef.value.map((schema) => getFormItem(schema))}
         {slots.default?.()}
       </Form>
     )

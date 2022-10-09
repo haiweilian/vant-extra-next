@@ -10,13 +10,13 @@ permalink: /components/image
 
 默认开启点击图片时预览图片。
 
-<demo iframe="200" src="./__demos__/basic.vue"></demo>
+<demo src="./__demos__/basic.vue"></demo>
 
 ## 分组预览
 
 预览一组图片。
 
-<demo iframe="200" src="./__demos__/group.vue"></demo>
+<demo src="./__demos__/group.vue"></demo>
 
 ## 组件配置
 

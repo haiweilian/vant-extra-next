@@ -24,14 +24,14 @@ export default defineComponent({
   },
 
   setup(props) {
-    const model = ref<any[]>()
+    // const model = ref<any[]>()
     const options = ref<CheckboxOptions[]>(
       props.schema.componentProps?.options || []
     )
 
     return () => (
       <CheckboxGroup
-        v-model={model.value}
+        // v-model={model.value}
         {...omit(getComponentProps(props.schema), ['options'])}
       >
         <Space wrap>

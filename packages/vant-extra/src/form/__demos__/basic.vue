@@ -1,6 +1,11 @@
 <template>
-  <vae-form :schemas="schemas" @submit="onSubmit" @failed="onFailed">
-    <div style="margin: 30px">
+  <vae-form
+    ref="formRef"
+    :schemas="schemas"
+    @submit="onSubmit"
+    @failed="onFailed"
+  >
+    <div style="margin: 30px 30px 0">
       <van-button round block type="primary" native-type="submit">
         提交
       </van-button>
@@ -9,113 +14,29 @@
 </template>
 
 <script lang="ts" setup>
-import { areaList } from '@vant/area-data'
-import type { FormSchema } from '@bfelib/vant-extra'
+import { ref, onMounted } from 'vue'
+import type { FormSchema, FormAction } from '@bfelib/vant-extra'
+
+const formRef = ref<FormAction>()
+onMounted(() => {
+  console.log(formRef.value)
+
+  formRef.value?.setValues({
+    field: '输入内容',
+    field_2: '输入内容描述输入内容描述',
+    rate: 4,
+    slider: 54,
+    stepper: 3,
+    switch: true,
+    uploader: [
+      {
+        url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
+      },
+    ],
+  })
+})
+
 const schemas: FormSchema[] = [
-  {
-    label: '省市区',
-    name: 'area',
-    component: 'Area',
-    placeholder: '请选择省市区',
-    required: true,
-    rules: [{ required: true, message: '请选择省市区' }],
-    componentProps: {
-      title: '标题',
-      areaList,
-    },
-  },
-  {
-    label: '日历',
-    name: 'calendar',
-    component: 'Calendar',
-    placeholder: '请选择日历',
-    required: true,
-    rules: [{ required: true, message: '请选择日历' }],
-    componentProps: {
-      title: '标题',
-    },
-  },
-  {
-    label: '范围日历',
-    name: 'calendar_2',
-    component: 'Calendar',
-    placeholder: '请选择范围日历',
-    required: true,
-    rules: [{ required: true, message: '请选择范围日历' }],
-    componentProps: {
-      title: '标题',
-      type: 'range',
-    },
-  },
-  {
-    label: '级联选择',
-    name: 'cascader',
-    component: 'Cascader',
-    placeholder: '请选择级联选择',
-    required: true,
-    rules: [{ required: true, message: '请选择级联选择' }],
-    componentProps: {
-      title: '标题',
-      options: [
-        {
-          text: '浙江省',
-          value: '330000',
-          children: [{ text: '杭州市', value: '330100' }],
-        },
-        {
-          text: '江苏省',
-          value: '320000',
-          children: [{ text: '南京市', value: '320100' }],
-        },
-      ],
-    },
-  },
-  {
-    label: '多选框',
-    name: 'checkbox',
-    component: 'Checkbox',
-    placeholder: '请选择多选框',
-    required: true,
-    rules: [{ required: true, message: '请选择多选框' }],
-    componentProps: {
-      options: [
-        {
-          text: '选项一',
-          value: '1',
-        },
-        {
-          text: '选项二',
-          value: '2',
-        },
-        {
-          text: '选项三',
-          value: '3',
-          disabled: true,
-        },
-      ],
-    },
-  },
-  {
-    label: '日期',
-    name: 'date_picker',
-    component: 'DatePicker',
-    placeholder: '请选择日期',
-    required: true,
-    rules: [{ required: true, message: '请选择日期' }],
-  },
-  {
-    label: '时间',
-    name: 'time_picker',
-    component: 'TimePicker',
-    placeholder: '请选择时间',
-    required: true,
-    rules: [{ required: true, message: '请选择时间' }],
-  },
-  {
-    label: '分割线',
-    name: 'divider',
-    component: 'Divider',
-  },
   {
     label: '输入框',
     name: 'field',
@@ -123,6 +44,9 @@ const schemas: FormSchema[] = [
     required: true,
     rules: [{ required: true, message: '请输入内容' }],
     placeholder: '请输入内容',
+    componentProps: {
+      contentPosition: 'left',
+    },
   },
   {
     label: '文本域',
@@ -135,48 +59,6 @@ const schemas: FormSchema[] = [
       type: 'textarea',
       maxlength: 150,
       showWordLimit: true,
-    },
-  },
-  {
-    label: '选择器',
-    name: 'picker',
-    component: 'Picker',
-    required: true,
-    rules: [{ required: true, message: '请选择选择器' }],
-    placeholder: '请选择选择器',
-    componentProps: {
-      columns: [
-        { text: '杭州', value: 'Hangzhou' },
-        { text: '宁波', value: 'Ningbo' },
-        { text: '温州', value: 'Wenzhou' },
-        { text: '绍兴', value: 'Shaoxing' },
-        { text: '湖州', value: 'Huzhou' },
-      ],
-    },
-  },
-  {
-    label: '单选框',
-    name: 'radio',
-    component: 'Radio',
-    placeholder: '请选择单选框',
-    required: true,
-    rules: [{ required: true, message: '请选择单选框' }],
-    componentProps: {
-      options: [
-        {
-          text: '选项一',
-          value: '1',
-        },
-        {
-          text: '选项二',
-          value: '2',
-        },
-        {
-          text: '选项三',
-          value: '3',
-          disabled: true,
-        },
-      ],
     },
   },
   {

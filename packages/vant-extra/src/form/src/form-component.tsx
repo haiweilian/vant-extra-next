@@ -27,3 +27,11 @@ formComponentMap.set('Stepper', Stepper)
 formComponentMap.set('Switch', Switch)
 formComponentMap.set('TimePicker', TimePicker)
 formComponentMap.set('Uploader', Uploader)
+
+export function add(name: FormComponentType, component: Component) {
+  formComponentMap.set(name, component)
+}
+
+export function del(name: FormComponentType) {
+  formComponentMap.delete(name)
+}

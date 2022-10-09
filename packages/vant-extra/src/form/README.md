@@ -6,11 +6,35 @@ permalink: /components/form
 
 组件描述组件描述组件描述组件描述组件描述组件描述。
 
-## 基础用法
+## 原始表单
 
 基础用法基础用法基础用法基础用法基础用法基础用法。
 
-<demo iframe="200" src="./__demos__/basic.vue"></demo>
+<demo src="./__demos__/basic.vue"></demo>
+
+## 选择框表单
+
+基础用法基础用法基础用法基础用法基础用法基础用法。
+
+<demo src="./__demos__/checker.vue"></demo>
+
+## 选择器表单
+
+基础用法基础用法基础用法基础用法基础用法基础用法。
+
+<demo src="./__demos__/picker.vue"></demo>
+
+## 时间表单
+
+基础用法基础用法基础用法基础用法基础用法基础用法。
+
+<demo src="./__demos__/datetime.vue"></demo>
+
+## 其他表单
+
+基础用法基础用法基础用法基础用法基础用法基础用法。
+
+<demo src="./__demos__/other.vue"></demo>
 
 ## 组件配置
 
@@ -44,6 +68,6 @@ import type { FormProps } from '@bfelib/vant-extra'
 
 组件提供了下列 CSS 变量，可用于自定义样式。
 
-| 名称                          | 默认值 |
-| ----------------------------- | ------ |
+| 名称                  | 默认值 |
+| --------------------- | ------ |
 | --vae-form-background | -      |
