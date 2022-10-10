@@ -1,12 +1,13 @@
-import { defineComponent, reactive, ref, type Ref } from 'vue'
+import { defineComponent, reactive, ref, computed, onMounted } from 'vue'
+import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace } from '../../utils'
-import { formProps } from './props'
 import { formComponentMap } from './form-component'
 import { getFieldProps, getComponentProps } from './utils'
 import { useFormAction } from './form-use-action'
-import type { FormSchema, FormAction } from './types'
+import { formProps } from './props'
+import type { FormProps, FormSchema, FormAction } from './types'
 
 const [name] = createNamespace('form')
 
@@ -15,11 +16,40 @@ export default defineComponent({
 
   props: formProps,
 
-  setup(props, { slots }) {
-    const formModel = reactive<any>({})
+  emits: ['register'],
 
+  setup(props, { emit, slots }) {
+    const formModel = reactive<any>({})
     const formElRef = ref<VantFormInstance>()
-    const schemaRef = ref(props.schemas)
+
+    const propsRef = ref<FormProps>({})
+    const propsComputed = computed<FormProps>(() => {
+      return { ...props, ...propsRef.value }
+    })
+
+    const schemaRef = ref<FormSchema[]>([])
+    const schemaComputed = computed<FormSchema[]>(() => {
+      return schemaRef.value.length
+        ? schemaRef.value
+        : propsComputed.value.schemas || []
+    })
+
+    const actions = useFormAction({
+      formModel,
+      formElRef: formElRef as Ref<VantFormInstance>,
+      propsRef,
+      propsComputed,
+      schemaRef,
+      schemaComputed,
+    })
+
+    useExpose<FormAction>({
+      ...actions,
+    })
+
+    onMounted(() => {
+      emit('register', actions)
+    })
 
     const getFormItem = (schema: FormSchema) => {
       const FormItem = formComponentMap.get(schema.component)
@@ -53,20 +83,9 @@ export default defineComponent({
       }
     }
 
-    const actions = useFormAction({
-      props,
-      formModel,
-      formElRef: formElRef as Ref<VantFormInstance>,
-      schemaRef,
-    })
-
-    useExpose<FormAction>({
-      ...actions,
-    })
-
     return () => (
-      <Form ref={formElRef}>
-        {schemaRef.value.map((schema) => getFormItem(schema))}
+      <Form ref={formElRef} {...propsComputed.value}>
+        {schemaComputed.value.map((schema) => getFormItem(schema))}
         {slots.default?.()}
       </Form>
     )

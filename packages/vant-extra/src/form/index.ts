@@ -6,3 +6,5 @@ export default Form
 
 export * from './src/types'
 export * from './src/props'
+export * from './src/form-use'
+export * from './src/form-use-register'
