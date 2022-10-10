@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Form > render 1`] = `
+"<form class=\\"van-form\\">
+  <!---->
+</form>"
+`;

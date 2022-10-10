@@ -1,9 +1,7 @@
 import type { Component } from 'vue'
 import type { FormComponentType } from './types'
 import { Divider, Field, Rate, Slider, Stepper, Switch, Uploader } from 'vant'
-import Area from './field-area'
 import Calendar from './field-calendar'
-import Cascader from './field-cascader'
 import Checkbox from './field-checkbox'
 import DatePicker from './field-date-picker'
 import DateTimePicker from './field-date-time-picker'
@@ -14,9 +12,7 @@ import TimePicker from './field-time-picker'
 
 export const formComponentMap = new Map<FormComponentType, Component>()
 
-formComponentMap.set('Area', Area)
 formComponentMap.set('Calendar', Calendar)
-formComponentMap.set('Cascader', Cascader)
 formComponentMap.set('Checkbox', Checkbox)
 formComponentMap.set('DatePicker', DatePicker)
 formComponentMap.set('DateTimePicker', DateTimePicker)
