@@ -1,4 +1,4 @@
-import type { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 import type { Numeric } from 'vant/es/utils'
 import type {
   CellArrowDirection,
@@ -7,14 +7,12 @@ import type {
   FieldProps,
   PopoverProps,
   FieldValidationStatus,
+  FormProps as VantFormProps,
 } from 'vant'
-import type { FormProps } from './props'
 import type { Recordable } from '../../utils'
 
 export type FormComponentType =
-  | 'Area'
   | 'Calendar'
-  | 'Cascader'
   | 'Checkbox'
   | 'DatePicker'
   | 'DateTimePicker'
@@ -29,6 +27,19 @@ export type FormComponentType =
   | 'Switch'
   | 'TimePicker'
   | 'Uploader'
+
+export interface RenderCallbackParams {
+  name: string
+  model: Recordable
+  schema: FormSchema
+}
+
+export interface FormProps extends Partial<VantFormProps> {
+  /**
+   * 表单配置
+   */
+  schemas?: FormSchema[]
+}
 
 export interface FormSchema {
   /**
@@ -95,6 +106,20 @@ export interface FormSchema {
    * 组件属性配置
    */
   componentProps?: Recordable
+  /**
+   * 是否隐藏，相当于删除
+   */
+  hidden?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  /**
+   * 自定义插槽
+   */
+  slot?: string
+  /**
+   * 自定义渲染
+   */
+  render?: (
+    renderCallbackParams: RenderCallbackParams
+  ) => VNode | VNode[] | string
 }
 
 export interface FormAction {
@@ -103,14 +128,18 @@ export interface FormAction {
   getValues: () => Recordable
   setValues: (values: Recordable) => void
   resetValues: () => void
-  validate: (name?: string | string[]) => Promise<void>
+  validate: (name?: string | string[]) => Promise<Recordable>
   resetValidation: (name?: string | string[]) => void
   getValidationStatus: () => Recordable<FieldValidationStatus>
-  setProps: () => void
-  getSchema: () => void
-  resetSchema: () => void
-  updateSchema: () => void
-  removeSchema: () => void
+  setProps: (props: Partial<FormProps>) => void
+  getSchema: () => FormSchema[]
+  resetSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
+  updateSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
+  removeSchemaByName: (names: string | string[]) => void
 }
 
 export type FormInstance = ComponentPublicInstance<FormProps, FormAction>
+
+export type UseFormRegister = (instance: FormAction) => void
+
+export type UseFormReturnType = [UseFormRegister, FormAction]

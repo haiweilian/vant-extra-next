@@ -76,6 +76,7 @@ export default defineComponent({
         <Calendar
           v-model:show={visible.value}
           defaultDate={defaultDate.value}
+          title={props.schema.label as string}
           {...getPopupProps(props.schema)}
           {...getComponentProps(props.schema)}
           onConfirm={onConfirm}

@@ -1,6 +1,6 @@
 import { extend } from 'vant/es/utils'
 import { formProps as vantFormProps } from 'vant'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 import type { FormSchema } from './types'
 
 export const formProps = extend({}, vantFormProps, {
@@ -9,5 +9,3 @@ export const formProps = extend({}, vantFormProps, {
     default: () => [],
   },
 })
-
-export type FormProps = ExtractPropTypes<typeof formProps>

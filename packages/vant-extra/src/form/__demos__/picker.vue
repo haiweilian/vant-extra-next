@@ -36,8 +36,6 @@ const schemas: FormSchema[] = [
     component: 'Select',
     isLink: true,
     required: true,
-    rules: [{ required: true, message: '请选择下拉选择' }],
-    placeholder: '请选择下拉选择',
     componentProps: {
       options: [
         { text: '杭州', value: 'Hangzhou' },
@@ -54,8 +52,6 @@ const schemas: FormSchema[] = [
     component: 'Picker',
     isLink: true,
     required: true,
-    rules: [{ required: true, message: '请选择选择器' }],
-    placeholder: '请选择选择器',
     componentProps: {
       options: [
         { text: '杭州', value: 'Hangzhou' },
@@ -72,8 +68,6 @@ const schemas: FormSchema[] = [
     component: 'Picker',
     isLink: true,
     required: true,
-    rules: [{ required: true, message: '请选择多列选择器' }],
-    placeholder: '请选择多列选择器',
     componentProps: {
       columns: [
         [
@@ -97,8 +91,6 @@ const schemas: FormSchema[] = [
     component: 'Picker',
     isLink: true,
     required: true,
-    rules: [{ required: true, message: '请选择级联选择器' }],
-    placeholder: '请选择级联选择器',
     componentProps: {
       columns: [
         {

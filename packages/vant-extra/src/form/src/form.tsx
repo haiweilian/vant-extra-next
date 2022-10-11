@@ -1,12 +1,14 @@
-import { defineComponent, reactive, ref, type Ref } from 'vue'
+import { defineComponent, reactive, ref, computed, onMounted } from 'vue'
+import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
+import { isString, isArray, isFunction, cloneDeep } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace } from '../../utils'
-import { formProps } from './props'
 import { formComponentMap } from './form-component'
 import { getFieldProps, getComponentProps } from './utils'
 import { useFormAction } from './form-use-action'
-import type { FormSchema, FormAction } from './types'
+import { formProps } from './props'
+import type { FormProps, FormSchema, FormAction } from './types'
 
 const [name] = createNamespace('form')
 
@@ -15,14 +17,103 @@ export default defineComponent({
 
   props: formProps,
 
-  setup(props, { slots }) {
-    const formModel = reactive<any>({})
+  emits: ['register'],
 
+  setup(props, { emit, slots }) {
+    const formModel = reactive<any>({})
     const formElRef = ref<VantFormInstance>()
-    const schemaRef = ref(props.schemas)
+
+    const propsRef = ref<FormProps>({})
+    const propsComputed = computed<FormProps>(() => {
+      return { ...props, ...propsRef.value }
+    })
+
+    const schemaRef = ref<FormSchema[]>([])
+    const schemaComputed = computed<FormSchema[]>(() => {
+      let schemas = schemaRef.value.length
+        ? schemaRef.value
+        : propsComputed.value.schemas || []
+
+      schemas = cloneDeep(schemas)
+      schemas.forEach((schema) => {
+        // 合并 Field Props 在自定义渲染时便于获取
+        schema.fieldProps = getFieldProps(schema)
+
+        // 如果 Field Placeholder 不存在生成提示信息
+        if (!schema.placeholder) {
+          schema.placeholder = `${
+            schema.component === 'Field' ? '请输入' : `请选择`
+          }${schema.label}`
+        }
+
+        // 若设置了 required 属性，又没有其他的 rules，就创建一个验证规则
+        // 若设置了 required 属性，又存在其他的 rules，则只 rules 中不存在 required 属性时，才添加验证 required 的规则
+        if (schema.required) {
+          if (isArray(schema.rules)) {
+            const hasRequiredRule = schema.rules.some((rule) => rule.required)
+            if (!hasRequiredRule) {
+              schema.rules.unshift({
+                required: true,
+                message: schema.placeholder,
+              })
+            }
+          } else {
+            schema.rules = [{ required: true, message: schema.placeholder }]
+          }
+        }
+      })
+
+      // 过滤需要隐藏的表单项
+      schemas = schemas.filter((schema) => {
+        let hidden = schema.hidden
+        if (isFunction(schema.hidden)) {
+          hidden = schema.hidden({
+            name: schema.name,
+            model: formModel,
+            schema,
+          })
+        }
+        return !hidden
+      })
+
+      return schemas
+    })
+
+    const actions = useFormAction({
+      formModel,
+      formElRef: formElRef as Ref<VantFormInstance>,
+      propsRef,
+      propsComputed,
+      schemaRef,
+      schemaComputed,
+    })
+
+    useExpose<FormAction>({
+      ...actions,
+    })
+
+    onMounted(() => {
+      emit('register', actions)
+    })
 
     const getFormItem = (schema: FormSchema) => {
       const FormItem = formComponentMap.get(schema.component)
+
+      if (isString(schema.slot)) {
+        return slots[schema.slot]?.({
+          name: schema.name,
+          model: formModel,
+          schema,
+        })
+      }
+
+      if (isFunction(schema.render)) {
+        return schema.render({
+          name: schema.name,
+          model: formModel,
+          schema,
+        })
+      }
 
       if (schema.component === 'Field') {
         return (
@@ -53,20 +144,9 @@ export default defineComponent({
       }
     }
 
-    const actions = useFormAction({
-      props,
-      formModel,
-      formElRef: formElRef as Ref<VantFormInstance>,
-      schemaRef,
-    })
-
-    useExpose<FormAction>({
-      ...actions,
-    })
-
     return () => (
-      <Form ref={formElRef}>
-        {schemaRef.value.map((schema) => getFormItem(schema))}
+      <Form ref={formElRef} {...propsComputed.value}>
+        {schemaComputed.value.map((schema) => getFormItem(schema))}
         {slots.default?.()}
       </Form>
     )

@@ -42,19 +42,16 @@ const schemas: FormSchema[] = [
     name: 'field',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
-    placeholder: '请输入内容',
-    componentProps: {
-      contentPosition: 'left',
-    },
+    // rules: [{ required: true, message: '请输入内容' }],
+    // placeholder: '请输入内容',
   },
   {
     label: '文本域',
     name: 'field_2',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
-    placeholder: '请输入内容',
+    // rules: [{ required: true, message: '请输入内容' }],
+    // placeholder: '请输入内容',
     componentProps: {
       type: 'textarea',
       maxlength: 150,
@@ -65,7 +62,6 @@ const schemas: FormSchema[] = [
     label: '评分',
     name: 'rate',
     component: 'Rate',
-    placeholder: '请选择评分',
     required: true,
     rules: [
       { required: true, validator: (val) => val > 0, message: '请选择评分' },
@@ -75,7 +71,6 @@ const schemas: FormSchema[] = [
     label: '滑块',
     name: 'slider',
     component: 'Slider',
-    placeholder: '请选择滑块',
     required: true,
     rules: [
       { required: true, validator: (val) => val > 0, message: '请选择滑块' },
@@ -85,7 +80,6 @@ const schemas: FormSchema[] = [
     label: '步进器',
     name: 'stepper',
     component: 'Stepper',
-    placeholder: '请选择步进器',
     required: true,
     rules: [
       { required: true, validator: (val) => val > 1, message: '请选择步进器' },
@@ -95,7 +89,6 @@ const schemas: FormSchema[] = [
     label: '开关',
     name: 'switch',
     component: 'Switch',
-    placeholder: '请选择开关',
     required: true,
     rules: [
       { required: true, validator: (val) => !!val, message: '请选择开关' },
@@ -105,9 +98,8 @@ const schemas: FormSchema[] = [
     label: '上传',
     name: 'uploader',
     component: 'Uploader',
-    placeholder: '请上传文件',
     required: true,
-    rules: [{ required: true, message: '请上传文件' }],
+    // rules: [{ required: true, message: '请上传文件' }],
   },
 ]
 
