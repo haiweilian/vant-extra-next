@@ -30,11 +30,6 @@ const schemas: FormSchema[] = [
     name: 'name',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入姓名' }],
-    placeholder: '请输入姓名',
-    componentProps: {
-      contentPosition: 'left',
-    },
   },
   {
     label: '性别',
@@ -42,8 +37,6 @@ const schemas: FormSchema[] = [
     component: 'Select',
     isLink: true,
     required: true,
-    rules: [{ required: true, message: '请选择性别' }],
-    placeholder: '请选择性别',
     componentProps: {
       options: [
         { text: '男', value: '1' },

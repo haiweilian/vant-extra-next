@@ -90,6 +90,7 @@ export default defineComponent({
         >
           <Picker
             ref={pickerRef}
+            title={props.schema.label as string}
             {...omit(getComponentProps(props.schema), ['options'])}
             columns={
               props.schema.componentProps?.options ||

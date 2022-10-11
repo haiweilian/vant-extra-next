@@ -1,7 +1,7 @@
 import { defineComponent, reactive, ref, computed, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
-import { isString, isFunction } from 'lodash-es'
+import { isString, isArray, isFunction, cloneDeep } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace } from '../../utils'
 import { formComponentMap } from './form-component'
@@ -34,6 +34,36 @@ export default defineComponent({
         ? schemaRef.value
         : propsComputed.value.schemas || []
 
+      schemas = cloneDeep(schemas)
+      schemas.forEach((schema) => {
+        // 合并 Field Props 在自定义渲染时便于获取
+        schema.fieldProps = getFieldProps(schema)
+
+        // 如果 Field Placeholder 不存在生成提示信息
+        if (!schema.placeholder) {
+          schema.placeholder = `${
+            schema.component === 'Field' ? '请输入' : `请选择`
+          }${schema.label}`
+        }
+
+        // 若设置了 required 属性，又没有其他的 rules，就创建一个验证规则
+        // 若设置了 required 属性，又存在其他的 rules，则只 rules 中不存在 required 属性时，才添加验证 required 的规则
+        if (schema.required) {
+          if (isArray(schema.rules)) {
+            const hasRequiredRule = schema.rules.some((rule) => rule.required)
+            if (!hasRequiredRule) {
+              schema.rules.unshift({
+                required: true,
+                message: schema.placeholder,
+              })
+            }
+          } else {
+            schema.rules = [{ required: true, message: schema.placeholder }]
+          }
+        }
+      })
+
+      // 过滤需要隐藏的表单项
       schemas = schemas.filter((schema) => {
         let hidden = schema.hidden
         if (isFunction(schema.hidden)) {

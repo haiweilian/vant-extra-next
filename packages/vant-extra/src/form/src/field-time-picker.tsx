@@ -57,6 +57,7 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <TimePicker
+            title={props.schema.label as string}
             {...getComponentProps(props.schema)}
             modelValue={model.value ? model.value.split(':') : []}
             onCancel={() => toggle(false)}

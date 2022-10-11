@@ -13,8 +13,6 @@ const schemas: FormSchema[] = [
     name: 'field',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
-    placeholder: '请输入内容',
     hidden: true,
   },
   {
@@ -22,8 +20,6 @@ const schemas: FormSchema[] = [
     name: 'field_2',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
-    placeholder: '请输入内容',
     hidden: () => false,
   },
   {
@@ -31,7 +27,6 @@ const schemas: FormSchema[] = [
     name: 'field_3',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
     slot: 'field_text',
   },
   {
@@ -39,7 +34,6 @@ const schemas: FormSchema[] = [
     name: 'field_4',
     component: 'Field',
     required: true,
-    rules: [{ required: true, message: '请输入内容' }],
     render({ name }) {
       return <div>{name}：自定义 render 渲染</div>
     },

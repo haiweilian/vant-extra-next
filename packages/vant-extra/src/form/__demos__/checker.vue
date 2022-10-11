@@ -32,9 +32,7 @@ const schemas: FormSchema[] = [
     label: '多选框',
     name: 'checkbox',
     component: 'Checkbox',
-    placeholder: '请选择多选框',
     required: true,
-    rules: [{ required: true, message: '请选择多选框' }],
     componentProps: {
       options: [
         {
@@ -57,9 +55,7 @@ const schemas: FormSchema[] = [
     label: '单选框',
     name: 'radio',
     component: 'Radio',
-    placeholder: '请选择单选框',
     required: true,
-    rules: [{ required: true, message: '请选择单选框' }],
     componentProps: {
       options: [
         {

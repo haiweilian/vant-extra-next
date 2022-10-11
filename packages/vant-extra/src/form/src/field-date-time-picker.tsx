@@ -102,6 +102,7 @@ export default defineComponent({
         >
           <PickerGroup
             tabs={['选择日期', '选择时间']}
+            title={props.schema.label as string}
             {...pick(
               getComponentProps(props.schema),
               Object.keys(pickerGroupProps)

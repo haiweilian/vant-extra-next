@@ -93,6 +93,7 @@ export default defineComponent({
           {...getPopupProps(props.schema)}
         >
           <Picker
+            title={props.schema.label as string}
             {...omit(getComponentProps(props.schema), ['options'])}
             columns={
               props.schema.componentProps?.options ||
