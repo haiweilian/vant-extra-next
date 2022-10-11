@@ -1,4 +1,4 @@
-import type { ComponentPublicInstance } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 import type { Numeric } from 'vant/es/utils'
 import type {
   CellArrowDirection,
@@ -27,6 +27,12 @@ export type FormComponentType =
   | 'Switch'
   | 'TimePicker'
   | 'Uploader'
+
+export interface RenderCallbackParams {
+  name: string
+  model: Recordable
+  schema: FormSchema
+}
 
 export interface FormProps extends Partial<VantFormProps> {
   /**
@@ -100,6 +106,20 @@ export interface FormSchema {
    * 组件属性配置
    */
   componentProps?: Recordable
+  /**
+   * 是否隐藏，相当于删除
+   */
+  hidden?: boolean | ((renderCallbackParams: RenderCallbackParams) => boolean)
+  /**
+   * 自定义插槽
+   */
+  slot?: string
+  /**
+   * 自定义渲染
+   */
+  render?: (
+    renderCallbackParams: RenderCallbackParams
+  ) => VNode | VNode[] | string
 }
 
 export interface FormAction {

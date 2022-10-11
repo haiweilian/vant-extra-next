@@ -42,6 +42,12 @@ permalink: /components/form
 
 <demo src="./__demos__/actions-use.vue"></demo>
 
+## 表单配置(Schema)
+
+演示一些常用的表单配置项。
+
+<demo src="./__demos__/schema.vue"></demo>
+
 ## 组件配置
 
 基于 [Vant Form Props](https://vant-contrib.gitee.io/vant/v4/#/zh-CN/form#props) 扩展，原有参数保留。

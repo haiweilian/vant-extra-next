@@ -1,6 +1,7 @@
 import { defineComponent, reactive, ref, computed, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
+import { isString, isFunction } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace } from '../../utils'
 import { formComponentMap } from './form-component'
@@ -29,9 +30,23 @@ export default defineComponent({
 
     const schemaRef = ref<FormSchema[]>([])
     const schemaComputed = computed<FormSchema[]>(() => {
-      return schemaRef.value.length
+      let schemas = schemaRef.value.length
         ? schemaRef.value
         : propsComputed.value.schemas || []
+
+      schemas = schemas.filter((schema) => {
+        let hidden = schema.hidden
+        if (isFunction(schema.hidden)) {
+          hidden = schema.hidden({
+            name: schema.name,
+            model: formModel,
+            schema,
+          })
+        }
+        return !hidden
+      })
+
+      return schemas
     })
 
     const actions = useFormAction({
@@ -53,6 +68,22 @@ export default defineComponent({
 
     const getFormItem = (schema: FormSchema) => {
       const FormItem = formComponentMap.get(schema.component)
+
+      if (isString(schema.slot)) {
+        return slots[schema.slot]?.({
+          name: schema.name,
+          model: formModel,
+          schema,
+        })
+      }
+
+      if (isFunction(schema.render)) {
+        return schema.render({
+          name: schema.name,
+          model: formModel,
+          schema,
+        })
+      }
 
       if (schema.component === 'Field') {
         return (
