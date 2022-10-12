@@ -1,5 +1,11 @@
 # @bfelib/vant-extra
 
+## 1.0.0-beta.4
+
+### Patch Changes
+
+- [#4](https://github.com/bfelib/vant-extra/pull/4) [`3d885d4`](https://github.com/bfelib/vant-extra/commit/3d885d4e7378f999c44127c2ffff578e7d1e17ca) Thanks [@haiweilian](https://github.com/haiweilian)! - add Form component
+
 ## 1.0.0-beta.3
 
 ### Patch Changes
