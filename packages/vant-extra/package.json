@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@vant/use": "^1.4.1",
-    "dayjs": "^1.11.5",
+    "dayjs": "2.0.0-alpha.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"
   },

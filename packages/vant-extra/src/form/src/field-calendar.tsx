@@ -1,4 +1,4 @@
-import dayjs from 'dayjs/esm/index'
+import dayjs from 'dayjs'
 import { defineComponent, ref, watch, type PropType } from 'vue'
 import { Calendar } from 'vant'
 import { isString, isArray } from 'lodash-es'

@@ -13,7 +13,7 @@ export default defineUserConfig({
     '**/*.md',
     '!.vuepress',
     '!node_modules',
-    '../packages/vant-extra/**/*.md',
+    '../packages/vant-extra/src/**/*.md',
     '!../packages/**/node_modules',
   ],
 

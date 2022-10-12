@@ -149,7 +149,7 @@ importers:
       '@vitest/ui': ^0.22.1
       '@vue/test-utils': ^2.0.2
       components-helper: ^2.0.0
-      dayjs: ^1.11.5
+      dayjs: 2.0.0-alpha.4
       esbuild: ^0.15.5
       execa: ^6.1.0
       fast-glob: ^3.2.11
@@ -176,7 +176,7 @@ importers:
       vue-tsc: ^0.40.1
     dependencies:
       '@vant/use': 1.4.2
-      dayjs: 1.11.5
+      dayjs: 2.0.0-alpha.4
       lodash: 4.17.21
       lodash-es: 4.17.21
     devDependencies:
@@ -3232,8 +3232,8 @@ packages:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
     dev: true
 
-  /dayjs/1.11.5:
-    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
+  /dayjs/2.0.0-alpha.4:
+    resolution: {integrity: sha512-1iNcyGuh1/uip1b3tP2LSK8pWIO0CZuBC3XI4ShYO9oeJUJP7DfvDEOkr1I8aElvATTYKeY4J+N1b4d+qA5XEg==}
     dev: false
 
   /debug/2.6.9:

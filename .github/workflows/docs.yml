@@ -32,6 +32,7 @@ jobs:
       - name: Install and Build
         run: |
           pnpm install --frozen-lockfile
+          pnpm ui:build
           pnpm docs:build
 
       # https://github.com/JamesIves/github-pages-deploy-action
