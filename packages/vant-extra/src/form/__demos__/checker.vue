@@ -1,6 +1,6 @@
 <template>
   <vae-form
-    ref="formRef"
+    v-model="model"
     :schemas="schemas"
     @submit="onSubmit"
     @failed="onFailed"
@@ -14,17 +14,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import type { FormSchema, FormAction } from '@bfelib/vant-extra'
+import { reactive } from 'vue'
+import type { FormSchema } from '@bfelib/vant-extra'
 
-const formRef = ref<FormAction>()
-onMounted(() => {
-  // console.log(formRef.value)
-
-  formRef.value?.setValues({
-    checkbox: ['1', '2'],
-    radio: '1',
-  })
+const model = reactive({
+  checkbox: ['1', '2'],
+  radio: '1',
 })
 
 const schemas: FormSchema[] = [

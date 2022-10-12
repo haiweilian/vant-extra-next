@@ -1,6 +1,6 @@
 <template>
   <vae-form
-    ref="formRef"
+    v-model="model"
     :schemas="schemas"
     @submit="onSubmit"
     @failed="onFailed"
@@ -14,20 +14,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import type { FormSchema, FormAction } from '@bfelib/vant-extra'
+import { reactive } from 'vue'
+import type { FormSchema } from '@bfelib/vant-extra'
 
-const formRef = ref<FormAction>()
-onMounted(() => {
-  // console.log(formRef.value)
-
-  formRef.value?.setValues({
-    calendar: '2022-10-10',
-    calendar_2: ['2022-10-10', '2022-10-15'],
-    date_picker: '2022-10-10',
-    time_picker: '12:30:30',
-    date_time_picker: '2022-10-10 12:30:30',
-  })
+const model = reactive({
+  calendar: '2022-10-10',
+  calendar_2: ['2022-10-10', '2022-10-15'],
+  date_picker: '2022-10-10',
+  time_picker: '12:30:30',
+  date_time_picker: '2022-10-10 12:30:30',
 })
 
 const schemas: FormSchema[] = [

@@ -1,6 +1,6 @@
 <template>
   <vae-form
-    ref="formRef"
+    v-model="model"
     :schemas="schemas"
     @submit="onSubmit"
     @failed="onFailed"
@@ -14,26 +14,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import type { FormSchema, FormAction } from '@bfelib/vant-extra'
+import { reactive } from 'vue'
+import type { FormSchema } from '@bfelib/vant-extra'
 
-const formRef = ref<FormAction>()
-onMounted(() => {
-  // console.log(formRef.value)
-
-  formRef.value?.setValues({
-    field: '输入内容',
-    field_2: '输入内容描述输入内容描述',
-    rate: 4,
-    slider: 54,
-    stepper: 3,
-    switch: true,
-    uploader: [
-      {
-        url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
-      },
-    ],
-  })
+const model = reactive({
+  field: '输入内容',
+  field_2: '输入内容描述输入内容描述',
+  rate: 4,
+  slider: 54,
+  stepper: 3,
+  switch: true,
+  uploader: [
+    {
+      url: 'https://fastly.jsdelivr.net/npm/@vant/assets/leaf.jpeg',
+    },
+  ],
 })
 
 const schemas: FormSchema[] = [

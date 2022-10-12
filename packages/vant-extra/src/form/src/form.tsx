@@ -1,9 +1,10 @@
-import { defineComponent, reactive, ref, computed, onMounted } from 'vue'
+import { defineComponent, reactive, ref, watch, computed, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
+import { isSameValue } from 'vant/es/utils'
 import { isString, isArray, isFunction, cloneDeep } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
-import { createNamespace } from '../../utils'
+import { createNamespace, type Recordable } from '../../utils'
 import { formComponentMap } from './form-component'
 import { getFieldProps, getComponentProps } from './utils'
 import { useFormAction } from './form-use-action'
@@ -17,10 +18,10 @@ export default defineComponent({
 
   props: formProps,
 
-  emits: ['register'],
+  emits: ['register', 'update:modelValue'],
 
   setup(props, { emit, slots }) {
-    const formModel = reactive<any>({})
+    const formModel = reactive<Recordable>(props.modelValue)
     const formElRef = ref<VantFormInstance>()
 
     const propsRef = ref<FormProps>({})
@@ -94,6 +95,21 @@ export default defineComponent({
 
     onMounted(() => {
       emit('register', actions)
+    })
+
+    watch(
+      () => props.modelValue,
+      (newValue) => {
+        if (!isSameValue(newValue, formModel)) {
+          actions.setValues(newValue)
+        }
+      }
+    )
+
+    watch(formModel, (newValue) => {
+      if (!isSameValue(newValue, props.modelValue)) {
+        emit('update:modelValue', newValue)
+      }
     })
 
     const getFormItem = (schema: FormSchema) => {

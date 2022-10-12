@@ -5,9 +5,10 @@
 </template>
 
 <script lang="tsx" setup>
+import { ref } from 'vue'
 import type { FormSchema } from '@bfelib/vant-extra'
 
-const schemas: FormSchema[] = [
+const schemas = ref<FormSchema[]>([
   {
     label: '输入框',
     name: 'field',
@@ -38,5 +39,9 @@ const schemas: FormSchema[] = [
       return <div>{name}：自定义 render 渲染</div>
     },
   },
-]
+])
+
+setTimeout(() => {
+  schemas.value[0].hidden = false
+}, 2000)
 </script>

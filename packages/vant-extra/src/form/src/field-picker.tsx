@@ -60,6 +60,7 @@ export default defineComponent({
     watch(
       () => [props.modelValue, props.schema],
       async () => {
+        await nextTick()
         if (!pickerRef.value) return
         model.value = props.modelValue
         await nextTick()

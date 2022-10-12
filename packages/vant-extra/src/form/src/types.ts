@@ -123,18 +123,57 @@ export interface FormSchema {
 }
 
 export interface FormAction {
+  /**
+   * 提交表单，与点击提交按钮的效果等价
+   */
   submit: () => void
+  /**
+   * 滚动到对应表单项的位置，默认滚动到顶部，第二个参数传 false 可滚动至底部
+   */
   scrollToField: (name: string, options?: boolean) => void
+  /**
+   * 获取所有表单项当前的值
+   */
   getValues: () => Recordable
+  /**
+   * 设置所有表单项当前的值
+   */
   setValues: (values: Recordable) => void
+  /**
+   * 重置所有表单项当前的值
+   */
   resetValues: () => void
+  /**
+   * 验证表单，支持传入一个或多个 name 来验证单个或部分表单项，不传入 name 时，会验证所有表单项
+   */
   validate: (name?: string | string[]) => Promise<Recordable>
+  /**
+   * 重置表单项的验证提示，支持传入一个或多个 name 来重置单个或部分表单项，不传入 name 时，会重置所有表单项
+   */
   resetValidation: (name?: string | string[]) => void
+  /**
+   * 获取所有表单项的校验状态，状态包括 passed、failed、unvalidated
+   */
   getValidationStatus: () => Recordable<FieldValidationStatus>
+  /**
+   * 动态设置表单 Props
+   */
   setProps: (props: Partial<FormProps>) => void
+  /**
+   * 获取 Schema，经过内部处理后的
+   */
   getSchema: () => FormSchema[]
+  /**
+   * 重置 Schema，完全覆盖上次的值
+   */
   resetSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
+  /**
+   * 更新 Schema，使用深度合并支持一个或多个
+   */
   updateSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
+  /**
+   * 删除 Schema，根据 name 删除支持一个或多个
+   */
   removeSchemaByName: (names: string | string[]) => void
 }
 
