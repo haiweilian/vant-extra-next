@@ -2,7 +2,7 @@ import { defineComponent, reactive, ref, watch, computed, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import { Form, Field, type FormInstance as VantFormInstance } from 'vant'
 import { isSameValue } from 'vant/es/utils'
-import { isString, isArray, isFunction, cloneDeep } from 'lodash-es'
+import { isString, isArray, isFunction, cloneDeep, omit } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace, type Recordable } from '../../utils'
 import { formComponentMap } from './form-component'
@@ -161,7 +161,10 @@ export default defineComponent({
     }
 
     return () => (
-      <Form ref={formElRef} {...propsComputed.value}>
+      <Form
+        ref={formElRef}
+        {...omit(propsComputed.value, ['schemas', 'modelValue'])}
+      >
         {schemaComputed.value.map((schema) => getFormItem(schema))}
         {slots.default?.()}
       </Form>
