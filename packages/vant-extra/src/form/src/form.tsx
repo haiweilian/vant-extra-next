@@ -140,24 +140,26 @@ export default defineComponent({
             {...getComponentProps(schema)}
           />
         )
-      } else if (schema.component === 'Divider') {
+      }
+
+      if (schema.component === 'Divider') {
         return (
           // @ts-ignore
           <FormItem {...getComponentProps(schema)}>{schema.label}</FormItem>
         )
-      } else {
-        return (
-          <Field
-            v-slots={{
-              input: () => (
-                // @ts-ignore
-                <FormItem v-model={formModel[schema.name]} schema={schema} />
-              ),
-            }}
-            {...getFieldProps(schema)}
-          />
-        )
       }
+
+      return (
+        <Field
+          v-slots={{
+            input: () => (
+              // @ts-ignore
+              <FormItem v-model={formModel[schema.name]} schema={schema} />
+            ),
+          }}
+          {...getFieldProps(schema)}
+        />
+      )
     }
 
     return () => (

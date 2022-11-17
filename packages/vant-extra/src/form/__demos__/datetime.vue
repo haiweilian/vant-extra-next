@@ -31,12 +31,20 @@ const schemas: FormSchema[] = [
     name: 'calendar',
     component: 'Calendar',
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
   },
   {
     label: '范围日历',
     name: 'calendar_2',
     component: 'Calendar',
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       type: 'range',
     },
@@ -46,12 +54,20 @@ const schemas: FormSchema[] = [
     name: 'date_picker',
     component: 'DatePicker',
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
   },
   {
     label: '时间',
     name: 'time_picker',
     component: 'TimePicker',
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       columnsType: ['hour', 'minute', 'second'],
     },
@@ -61,6 +77,10 @@ const schemas: FormSchema[] = [
     name: 'date_time_picker',
     component: 'DateTimePicker',
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       // tabs: ['选择日期', '选择时间'],
       // columnsType: ['year', 'month', 'hour', 'minute'],

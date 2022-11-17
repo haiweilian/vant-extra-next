@@ -29,8 +29,11 @@ const schemas: FormSchema[] = [
     label: '下拉选择',
     name: 'select',
     component: 'Select',
-    isLink: true,
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       options: [
         { text: '杭州', value: 'Hangzhou' },
@@ -45,8 +48,11 @@ const schemas: FormSchema[] = [
     label: '单列选择器',
     name: 'picker',
     component: 'Picker',
-    isLink: true,
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       options: [
         { text: '杭州', value: 'Hangzhou' },
@@ -61,8 +67,11 @@ const schemas: FormSchema[] = [
     label: '多列选择器',
     name: 'picker_2',
     component: 'Picker',
-    isLink: true,
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       columns: [
         [
@@ -84,8 +93,11 @@ const schemas: FormSchema[] = [
     label: '级联选择器',
     name: 'picker_3',
     component: 'Picker',
-    isLink: true,
     required: true,
+    fieldProps: {
+      isLink: true,
+      arrowDirection: 'down',
+    },
     componentProps: {
       columns: [
         {

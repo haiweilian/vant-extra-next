@@ -20,7 +20,7 @@ permalink: /components/form
 
 ## 选择器表单
 
-结合 `Field`、`Popup` 和 `Picker` 组件的组合实现绑定与回显。添加 `Select` 组件实现下拉选择。
+结合 `Field`、`Popup` 和 `Picker` 组件的组合实现绑定与回显。添加 `Select` 组件实现下拉单选选择。
 
 <demo src="./__demos__/picker.vue"></demo>
 
@@ -82,39 +82,15 @@ export interface FormSchema {
    */
   disabled?: boolean
   /**
-   * 是否在 label 后面添加冒号
-   */
-  colon?: boolean
-  /**
    * 是否显示表单必填星号
    */
   required?: boolean
-  /**
-   * 是否展示右侧箭头并开启点击反馈
-   */
-  isLink?: boolean
-  /**
-   * 箭头方向
-   */
-  arrowDirection?: CellArrowDirection
-  /**
-   * 左侧文本宽度
-   */
-  labelWidth?: Numeric
-  /**
-   * 左侧文本额外类名
-   */
-  labelClass?: unknown
-  /**
-   * 左侧文本对齐方式
-   */
-  labelAlign?: FieldTextAlign
   /**
    * 表单校验规则，详见 Form 组件	FieldRule[]
    */
   rules?: FieldRule[]
   /**
-   * 项属性配置
+   * 表单项属性配置
    */
   fieldProps?: Partial<FieldProps>
   /**
@@ -141,19 +117,6 @@ export interface FormSchema {
   ) => VNode | VNode[] | string
 }
 ```
-
-### Form Events
-
-| 事件名 | 说明                       | 参数                                              |
-| ------ | -------------------------- | ------------------------------------------------- |
-| submit | 提交表单且验证通过后触发   | `values: object`                                  |
-| failed | 提交表单且验证不通过后触发 | `errorInfo: { values: object, errors: object[] }` |
-
-### Form Slots
-
-| 插槽名  | 说明         |
-| ------- | ------------ |
-| default | 追加表单内容 |
 
 ### Form Methods
 

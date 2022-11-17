@@ -10,17 +10,9 @@ export const getFieldProps = (schema: FormSchema): Partial<FieldProps> => {
     pick(schema, [
       'label',
       'name',
-      'size',
       'placeholder',
       'disabled',
-      'readonly',
-      'colon',
       'required',
-      'isLink',
-      'arrowDirection',
-      'labelWidth',
-      'labelClass',
-      'labelAlign',
       'rules',
     ]),
 
