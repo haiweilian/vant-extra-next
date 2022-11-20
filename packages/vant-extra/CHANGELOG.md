@@ -1,5 +1,11 @@
 # @bfelib/vant-extra
 
+## 1.0.0-beta.5
+
+### Patch Changes
+
+- [`c922917`](https://github.com/bfelib/vant-extra/commit/c922917bc4e4c7b1b0b7f5a8b742f6ab35bc42b2) Thanks [@haiweilian](https://github.com/haiweilian)! - add Descriptions component
+
 ## 1.0.0-beta.4
 
 ### Patch Changes
