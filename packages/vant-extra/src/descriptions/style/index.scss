@@ -1,0 +1,89 @@
+body {
+  --vae-descriptions-font-size: var(--van-font-size-md);
+  --vae-descriptions-color: var(--van-text-color);
+  --vae-descriptions-colon-margin: 0 var(--van-padding-xs) 0 2px;
+  --vae-descriptions-header-margin: 0 0 var(--van-padding-md) 0;
+  --vae-descriptions-title-font-size: var(--van-font-size-lg);
+  --vae-descriptions-title-color: var(--van-text-color);
+  --vae-descriptions-body-background: var(--van-background-2);
+  --vae-descriptions-cell-font-size: var(--van-font-size-md);
+  --vae-descriptions-cell-padding: 0 0 var(--van-padding-sm) 0;
+  --vae-descriptions-label-color: var(--van-text-color-2);
+  --vae-descriptions-content-color: var(--van-text-color);
+  --vae-descriptions-small-header-margin: 0 0 var(--van-padding-sm) 0;
+  --vae-descriptions-small-title-font-size: var(--van-font-size-md);
+  --vae-descriptions-small-cell-font-size: var(--van-font-size-sm);
+  --vae-descriptions-small-cell-padding: 0 0 var(--van-padding-xs) 0;
+}
+
+.vae-descriptions {
+  $p: &;
+
+  box-sizing: border-box;
+  font-size: var(--vae-descriptions-font-size);
+  color: var(--vae-descriptions-color);
+
+  &--colon {
+    #{$p}__label::after {
+      position: relative;
+      top: -0.5px;
+      margin: var(--vae-descriptions-colon-margin);
+      content: ':';
+    }
+  }
+
+  &--small {
+    #{$p}__header {
+      margin: var(--vae-descriptions-small-header-margin);
+    }
+
+    #{$p}__title {
+      font-size: var(--vae-descriptions-small-title-font-size);
+    }
+
+    #{$p}__cell {
+      padding: var(--vae-descriptions-small-cell-padding);
+      font-size: var(--vae-descriptions-small-cell-font-size);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: var(--vae-descriptions-header-margin);
+  }
+
+  &__title {
+    font-size: var(--vae-descriptions-title-font-size);
+    font-weight: 700;
+    color: var(--vae-descriptions-title-color);
+  }
+
+  &__body {
+    background: var(--vae-descriptions-body-background);
+  }
+
+  &__table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+  }
+
+  &__cell {
+    box-sizing: border-box;
+    padding: var(--vae-descriptions-cell-padding);
+    font-size: var(--vae-descriptions-cell-font-size);
+    text-align: left;
+  }
+
+  &__label {
+    line-height: 1.5715;
+    color: var(--vae-descriptions-label-color);
+  }
+
+  &__content {
+    line-height: 1.5715;
+    color: var(--vae-descriptions-content-color);
+  }
+}

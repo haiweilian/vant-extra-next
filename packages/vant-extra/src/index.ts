@@ -3,13 +3,23 @@ import { BackTop } from './back-top'
 import { Card } from './card'
 import { Form } from './form'
 import { Image, ImageGroup } from './image'
+import { Descriptions, DescriptionsItem } from './descriptions'
 
 export * from './back-top'
 export * from './card'
 export * from './form'
 export * from './image'
+export * from './descriptions'
 
-const components = [BackTop, Card, Form, Image, ImageGroup]
+const components = [
+  BackTop,
+  Card,
+  Form,
+  Image,
+  ImageGroup,
+  Descriptions,
+  DescriptionsItem,
+]
 
 export function install(app: App) {
   components.forEach((item) => {

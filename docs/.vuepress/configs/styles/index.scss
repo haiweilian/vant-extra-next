@@ -16,4 +16,17 @@
       border-bottom: none;
     }
   }
+
+  .vae-descriptions {
+    table {
+      margin: 0;
+
+      tr,
+      th,
+      td {
+        background: transparent;
+        border: none;
+      }
+    }
+  }
 }

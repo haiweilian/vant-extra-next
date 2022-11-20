@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`Descriptions > render 1`] = `
+"<div class=\\"vae-descriptions vae-descriptions--colon vae-descriptions--normal\\">
+  <!---->
+  <table class=\\"vae-descriptions__table\\">
+    <tbody></tbody>
+  </table>
+</div>"
+`;

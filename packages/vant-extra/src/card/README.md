@@ -49,7 +49,7 @@ permalink: /components/card
 
 ## 类型定义
 
-组件导出以下类型定义
+组件导出以下类型定义。
 
 ```ts
 import type { CardProps } from '@bfelib/vant-extra'
@@ -59,23 +59,23 @@ import type { CardProps } from '@bfelib/vant-extra'
 
 组件提供了下列 CSS 变量，可用于自定义样式。
 
-| 名称                       | 默认值                   |
-| -------------------------- | ------------------------ |
-| --vae-card-padding         | 0 0 16px 0               |
-| --vae-card-line-height     | 22px                     |
-| --vae-card-background      | #fff                     |
-| --vae-card-border          | 1px solid #ebedf0        |
-| --vae-card-radius          | 8px                      |
-| --vae-card-shadow          | 0 0 4px rgb(0 0 0 / 12%) |
-| --vae-card-image-width     | 100%                     |
-| --vae-card-image-height    | 200px                    |
-| --vae-card-title-padding   | 0 12px                   |
-| --vae-card-title-margin    | 16px 0 0 0               |
-| --vae-card-title-font-size | 16px                     |
-| --vae-card-title-color     | #323233                  |
-| --vae-card-desc-padding    | 0 12px                   |
-| --vae-card-desc-margin     | 16px 0 0 0               |
-| --vae-card-desc-font-size  | 14px                     |
-| --vae-card-desc-color      | #969799                  |
-| --vae-card-extra-padding   | 0 12px                   |
-| --vae-card-extra-margin    | 24px 0 0 0               |
+| 名称                       | 默认值                                                |
+| -------------------------- | ----------------------------------------------------- |
+| --vae-card-padding         | 0 0 var(--van-padding-md) 0                           |
+| --vae-card-line-height     | var(--van-line-height-lg)                             |
+| --vae-card-background      | var(--van-background-2)                               |
+| --vae-card-border          | var(--van-border-width) solid var(--van-border-color) |
+| --vae-card-radius          | var(--van-radius-lg)                                  |
+| --vae-card-shadow          | 0 0 4px rgb(0 0 0 / 12%)                              |
+| --vae-card-image-width     | 100%                                                  |
+| --vae-card-image-height    | 200px                                                 |
+| --vae-card-title-padding   | 0 var(--van-padding-sm)                               |
+| --vae-card-title-margin    | var(--van-padding-md) 0 0 0                           |
+| --vae-card-title-font-size | var(--van-font-size-lg)                               |
+| --vae-card-title-color     | var(--van-text-color)                                 |
+| --vae-card-desc-padding    | 0 var(--van-padding-sm)                               |
+| --vae-card-desc-margin     | var(--van-padding-md) 0 0 0                           |
+| --vae-card-desc-font-size  | var(--van-font-size-md)                               |
+| --vae-card-desc-color      | var(--van-text-color-2)                               |
+| --vae-card-extra-padding   | 0 var(--van-padding-sm)                               |
+| --vae-card-extra-margin    | var(--van-padding-lg) 0 0 0                           |

@@ -37,7 +37,7 @@ permalink: /components/backtop
 
 ## 类型定义
 
-组件导出以下类型定义
+组件导出以下类型定义。
 
 ```ts
 import type { BackTopProps } from '@bfelib/vant-extra'

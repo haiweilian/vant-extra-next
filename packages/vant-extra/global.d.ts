@@ -8,5 +8,7 @@ declare module '@vue/runtime-core' {
     VaeForm: typeof import('@bfelib/vant-extra')['Form']
     VaeImage: typeof import('@bfelib/vant-extra')['Image']
     VaeImageGroup: typeof import('@bfelib/vant-extra')['ImageGroup']
+    VaeDescriptions: typeof import('@bfelib/vant-extra')['Descriptions']
+    VaeDescriptionsItem: typeof import('@bfelib/vant-extra')['DescriptionsItem']
   }
 }

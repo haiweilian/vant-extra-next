@@ -26,6 +26,10 @@ export const zh: SidebarConfig = {
           text: 'Image 图片',
           link: '/components/image/',
         },
+        {
+          text: 'Descriptions 描述列表',
+          link: '/components/descriptions/',
+        },
       ],
     },
   ],

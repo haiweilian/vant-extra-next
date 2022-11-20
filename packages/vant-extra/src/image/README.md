@@ -39,7 +39,7 @@ permalink: /components/image
 
 ## 类型定义
 
-组件导出以下类型定义
+组件导出以下类型定义。
 
 ```ts
 import type { ImageProps } from '@bfelib/vant-extra'

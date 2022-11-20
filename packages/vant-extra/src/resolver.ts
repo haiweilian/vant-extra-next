@@ -34,6 +34,10 @@ function getSideEffects(
     dirName = 'image'
   }
 
+  if (['descriptions-item'].includes(dirName)) {
+    dirName = 'descriptions'
+  }
+
   if (importStyle === 'scss') {
     return `@bfelib/vant-extra/${moduleType}/${dirName}/style/scss`
   } else {
