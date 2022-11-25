@@ -1,4 +1,9 @@
-import { makeNumberProp, makeStringProp, truthProp } from 'vant/es/utils'
+import {
+  makeNumberProp,
+  makeStringProp,
+  truthProp,
+  unknownProp,
+} from 'vant/es/utils'
 import type { ExtractPropTypes } from 'vue'
 
 export type DescriptionsSize = 'normal' | 'small'
@@ -24,6 +29,10 @@ export const descriptionsProps = {
    * 描述列表尺寸
    */
   size: makeStringProp<DescriptionsSize>('normal'),
+  /**
+   * 列的标签自定义类名
+   */
+  labelClass: unknownProp,
 }
 
 export type DescriptionsProps = ExtractPropTypes<typeof descriptionsProps>
@@ -37,6 +46,10 @@ export const descriptionsItemProps = {
    * 列的数量
    */
   span: Number,
+  /**
+   * 列的标签自定义类名
+   */
+  labelClass: unknownProp,
 }
 
 export type DescriptionsItemProps = ExtractPropTypes<

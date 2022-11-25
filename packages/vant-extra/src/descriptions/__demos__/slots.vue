@@ -1,5 +1,5 @@
 <template>
-  <vae-descriptions size="small">
+  <vae-descriptions size="small" label-class="label-style">
     <template #title>
       <span>用户信息</span>
       <van-icon name="guide-o" />
@@ -7,34 +7,10 @@
     <template #extra>
       <van-icon name="setting-o" />
     </template>
-    <vae-descriptions-item>
-      <template #label>
-        <van-icon name="location-o" />
-        <span>名字</span>
-      </template>
-      连少
-    </vae-descriptions-item>
-    <vae-descriptions-item>
-      <template #label>
-        <van-icon name="location-o" />
-        <span>电话</span>
-      </template>
-      18100000000
-    </vae-descriptions-item>
-    <vae-descriptions-item>
-      <template #label>
-        <van-icon name="location-o" />
-        <span>性别</span>
-      </template>
-      男
-    </vae-descriptions-item>
-    <vae-descriptions-item>
-      <template #label>
-        <van-icon name="location-o" />
-        <span>年龄</span>
-      </template>
-      18岁
-    </vae-descriptions-item>
+    <vae-descriptions-item label="名字">连少</vae-descriptions-item>
+    <vae-descriptions-item label="电话">18100000000</vae-descriptions-item>
+    <vae-descriptions-item label="性别">男</vae-descriptions-item>
+    <vae-descriptions-item label="年龄">18岁</vae-descriptions-item>
     <vae-descriptions-item>
       <template #label>
         <van-icon name="location-o" />
@@ -44,3 +20,10 @@
     </vae-descriptions-item>
   </vae-descriptions>
 </template>
+
+<style>
+.label-style {
+  width: 80px;
+  text-align: right;
+}
+</style>

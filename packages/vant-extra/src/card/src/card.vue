@@ -36,7 +36,7 @@ import { cardProps } from './props'
 const [_, bem] = createNamespace('card')
 
 defineOptions({
-  name: 'VaeCard',
+  name: 'vae-card',
 })
 
 defineProps(cardProps)

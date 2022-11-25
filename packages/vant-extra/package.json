@@ -1,6 +1,6 @@
 {
   "name": "@bfelib/vant-extra",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Vant extension components.",
   "main": "lib/index.js",
   "module": "es/index.mjs",
@@ -29,7 +29,7 @@
     "vue": "^3.2.0"
   },
   "dependencies": {
-    "@vant/use": "^1.4.1",
+    "@vant/use": "^1.4.3",
     "dayjs": "2.0.0-alpha.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"
@@ -68,7 +68,7 @@
     "typescript": "^4.7.4",
     "unplugin-vue-components": "^0.22.4",
     "unplugin-vue-define-options": "^0.10.0",
-    "vant": "4.0.0-rc.7",
+    "vant": "4.0.0-rc.9",
     "vite": "^3.0.5",
     "vitest": "^0.22.1",
     "vue": "^3.2.37",

@@ -4,6 +4,9 @@ permalink: /components/backtop
 
 # BackTop
 
+::: tip Vant 已实现此组件。
+:::
+
 返回页面顶部的操作按钮。
 
 ## 基础用法

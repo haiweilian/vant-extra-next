@@ -1,6 +1,6 @@
 import { defineComponent, type VNode } from 'vue'
 import { isObject, isFunction } from 'lodash-es'
-import { createNamespace } from '../../utils'
+import { createNamespace, flattedChildren } from '../../utils'
 import { descriptionsProps } from './props'
 
 const [name, bem] = createNamespace('descriptions')
@@ -30,9 +30,9 @@ export default defineComponent({
     }
 
     const getRows = () => {
-      const children = (slots.default?.() || []).filter(
+      const children = flattedChildren(slots.default?.() || []).filter(
         (node: any) => node?.type?.name === 'vae-descriptions-item'
-      )
+      ) as VNode[]
 
       const rows: VNode[][] = []
       let temp: VNode[] = []
@@ -95,28 +95,38 @@ export default defineComponent({
 
     const renderBody = () => {
       return (
-        <table class={bem('table')}>
-          <tbody>
-            {getRows().map((row, rowIndex) => (
-              <tr key={rowIndex}>
-                {row.map((col, colIndex) => (
-                  <td
-                    key={colIndex}
-                    colspan={col.props?.span || 1}
-                    class={bem('cell')}
-                  >
-                    <span class={bem('label')}>
-                      {getSlots(col, 'label') || col.props?.label}
-                    </span>
-                    <span class={bem('content')}>
-                      {getSlots(col, 'default')}
-                    </span>
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div class={bem('body')}>
+          <table class={bem('table')}>
+            <tbody>
+              {getRows().map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((col, colIndex) => (
+                    <td
+                      key={colIndex}
+                      colspan={col.props?.span || 1}
+                      class={bem('cell')}
+                    >
+                      <div class={bem('container')}>
+                        <span
+                          class={[
+                            bem('label'),
+                            props.labelClass,
+                            col.props?.labelClass,
+                          ]}
+                        >
+                          {getSlots(col, 'label') || col.props?.label}
+                        </span>
+                        <span class={bem('content')}>
+                          {getSlots(col, 'default')}
+                        </span>
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )
     }
 
