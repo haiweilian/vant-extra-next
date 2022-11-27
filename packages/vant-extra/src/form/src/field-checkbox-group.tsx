@@ -5,7 +5,7 @@ import { createNamespace } from '../../utils'
 import { getComponentProps } from './utils'
 import type { FormSchema } from './types'
 
-const [name] = createNamespace('field-checkbox')
+const [name] = createNamespace('field-checkbox-group')
 
 export interface CheckboxOptions {
   text: number | string
@@ -33,7 +33,12 @@ export default defineComponent({
       <CheckboxGroup {...omit(getComponentProps(props.schema), ['options'])}>
         <Space wrap>
           {options.value.map((item) => (
-            <Checkbox name={item.value} disabled={item.disabled} shape="square">
+            <Checkbox
+              key={item.value}
+              name={item.value}
+              disabled={item.disabled}
+              shape="square"
+            >
               {item.text}
             </Checkbox>
           ))}

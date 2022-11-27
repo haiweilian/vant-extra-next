@@ -20,6 +20,7 @@ import type { FormSchema } from '@bfelib/vant-extra'
 const model = reactive({
   field: '输入内容',
   field_2: '输入内容描述输入内容描述',
+  checkbox: true,
   rate: 4,
   slider: 54,
   stepper: 3,
@@ -51,6 +52,21 @@ const schemas: FormSchema[] = [
       type: 'textarea',
       maxlength: 150,
       showWordLimit: true,
+    },
+  },
+  {
+    label: '分割线',
+    name: 'divider',
+    component: 'Divider',
+    required: true,
+  },
+  {
+    label: '复选框',
+    name: 'checkbox',
+    component: 'Checkbox',
+    required: true,
+    componentProps: {
+      shape: 'square',
     },
   },
   {
@@ -94,7 +110,6 @@ const schemas: FormSchema[] = [
     name: 'uploader',
     component: 'Uploader',
     required: true,
-    // rules: [{ required: true, message: '请上传文件' }],
   },
 ]
 

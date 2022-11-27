@@ -1,7 +1,6 @@
-import dayjs from 'dayjs'
 import { defineComponent, ref, watch, type PropType } from 'vue'
 import { Calendar } from 'vant'
-import { isString, isArray } from 'lodash-es'
+import { isArray, isFunction } from 'lodash-es'
 import { useToggle, useCustomFieldValue } from '@vant/use'
 import { createNamespace } from '../../utils'
 import { getPopupProps, getComponentProps } from './utils'
@@ -17,47 +16,59 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
-    modelValue: [String, Array] as PropType<string | string[]>,
+    modelValue: [String, Array],
   },
 
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    const text = ref<string>()
-    const model = ref<string | string[] | undefined>(props.modelValue)
-    const defaultDate = ref<Date[] | Date | undefined>()
+    const model = ref<string | string[]>()
     const [visible, toggle] = useToggle()
 
-    useCustomFieldValue(() => model.value)
+    const format = (date: Date) => {
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    }
 
-    const format = 'YYYY-MM-DD'
+    const formatInput = () => {
+      const format = props.schema.componentProps?.formatInput
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      if (isArray(model.value)) {
+        return model.value.join('/')
+      } else {
+        return model.value
+      }
+    }
+
+    const formatValue = () => {
+      const type = props.schema.componentProps?.type
+      const format = props.schema.componentProps?.formatValue
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      if (type === 'range' || type === 'multiple') {
+        return model.value ?? []
+      } else {
+        return model.value ?? ''
+      }
+    }
+
+    useCustomFieldValue(formatValue)
 
     const onConfirm = (dates: Date | Date[]) => {
       toggle(false)
 
-      defaultDate.value = dates
-
-      const values = isArray(dates)
-        ? dates.map((date) => dayjs(date).format(format))
-        : dayjs(dates).format(format)
-
-      model.value = values
-      emit('update:modelValue', values)
-
-      text.value = isArray(values) ? values.join('/') : values
+      model.value = isArray(dates)
+        ? dates.map((date) => format(date))
+        : format(dates)
+      emit('update:modelValue', formatValue())
     }
 
     watch(
       () => props.modelValue,
       (newVal) => {
-        model.value = newVal
-        if (isString(newVal)) {
-          text.value = newVal
-          defaultDate.value = dayjs(newVal).toDate()
-        } else if (isArray(newVal)) {
-          text.value = newVal.join('/')
-          defaultDate.value = newVal.map((date) => dayjs(date).toDate())
-        }
+        model.value = newVal as any
       },
       { immediate: true }
     )
@@ -68,14 +79,13 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={text.value}
+          value={formatInput()}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
         />
         <Calendar
           v-model:show={visible.value}
-          defaultDate={defaultDate.value}
           title={props.schema.label as string}
           {...getPopupProps(props.schema)}
           {...getComponentProps(props.schema)}

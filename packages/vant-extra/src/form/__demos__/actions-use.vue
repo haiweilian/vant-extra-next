@@ -35,7 +35,6 @@ const schemas: FormSchema[] = [
     label: '性别',
     name: 'sex',
     component: 'Select',
-    isLink: true,
     required: true,
     componentProps: {
       options: [

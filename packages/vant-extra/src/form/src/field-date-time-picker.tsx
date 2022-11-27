@@ -1,5 +1,12 @@
 import { defineComponent, ref, watch, computed, type PropType } from 'vue'
-import { isString, isArray, pick, intersection } from 'lodash-es'
+import {
+  isString,
+  isArray,
+  isFunction,
+  pick,
+  intersection,
+  isEmpty,
+} from 'lodash-es'
 import {
   Popup,
   PickerGroup,
@@ -29,26 +36,47 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
-    modelValue: String,
+    modelValue: [String, Array],
   },
 
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    const model = ref<string | undefined>(props.modelValue)
-    const modelDate = ref<string | undefined>()
-    const modelTime = ref<string | undefined>()
+    const model = ref<string[]>([])
+    const modelDate = ref<string[]>([])
+    const modelTime = ref<string[]>([])
     const [visible, toggle] = useToggle()
 
-    useCustomFieldValue(() => model.value)
+    const formatInput = () => {
+      const format = props.schema.componentProps?.formatInput
+      if (isFunction(format)) {
+        return format([modelDate.value, modelTime.value])
+      }
+      if (!isEmpty(model.value)) {
+        return modelDate.value.join('-') + ' ' + modelTime.value.join(':')
+      }
+      return model.value.join('-')
+    }
+
+    const formatValue = () => {
+      const format = props.schema.componentProps?.formatValue
+      if (isFunction(format)) {
+        return format([modelDate.value, modelTime.value])
+      }
+      if (!isEmpty(modelDate.value) && !isEmpty(modelTime.value)) {
+        return modelDate.value.join('-') + ' ' + modelTime.value.join(':')
+      }
+      return model.value.join('-')
+    }
+
+    useCustomFieldValue(formatValue)
 
     const dateType: DatePickerColumnType[] = ['year', 'month', 'day']
     const timeType: TimePickerColumnType[] = ['hour', 'minute', 'second']
-
     const columnsType = computed<
       [DatePickerColumnType[], TimePickerColumnType[]]
     >(() => {
-      const _columnsType = getComponentProps(props.schema).columnsType
+      const _columnsType = props.schema.componentProps?.columnsType
       if (isArray(_columnsType)) {
         return [
           intersection(_columnsType, dateType),
@@ -65,21 +93,22 @@ export default defineComponent({
     ]: [PickerConfirmEventParams, PickerConfirmEventParams]) => {
       toggle(false)
 
-      modelDate.value = dateSelectedValues.join('-')
-      modelTime.value = timeSelectedValues.join(':')
-      model.value = `${modelDate.value} ${modelTime.value}`
-      emit('update:modelValue', model.value)
+      modelDate.value = dateSelectedValues as string[]
+      modelTime.value = timeSelectedValues as string[]
+      model.value = [...modelDate.value, ...modelTime.value]
+      emit('update:modelValue', formatValue())
     }
 
     watch(
       () => props.modelValue,
       (newVal) => {
-        model.value = newVal
-        if (isString(newVal)) {
-          const [dateVal, timeVal] = newVal.split(' ')
-          modelDate.value = dateVal
-          modelTime.value = timeVal
+        if (isArray(newVal)) {
+          model.value = newVal.flat() as string[]
+        } else if (isString(newVal)) {
+          model.value = [...newVal.matchAll(/\d+/g)].map((item) => item[0])
         }
+        modelDate.value = model.value.slice(0, columnsType.value[0].length)
+        modelTime.value = model.value.slice(columnsType.value[0].length)
       },
       { immediate: true }
     )
@@ -90,7 +119,7 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={model.value}
+          value={formatInput()}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
@@ -115,7 +144,7 @@ export default defineComponent({
                 getComponentProps(props.schema),
                 Object.keys(datePickerProps)
               )}
-              modelValue={modelDate.value ? modelDate.value.split('-') : []}
+              modelValue={modelDate.value}
               columnsType={columnsType.value[0]}
             />
             <TimePicker
@@ -123,7 +152,7 @@ export default defineComponent({
                 getComponentProps(props.schema),
                 Object.keys(timePickerProps)
               )}
-              modelValue={modelTime.value ? modelTime.value.split(':') : []}
+              modelValue={modelTime.value}
               columnsType={columnsType.value[1]}
             />
           </PickerGroup>

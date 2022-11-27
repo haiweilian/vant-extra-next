@@ -60,8 +60,8 @@ export function useForm(props?: DynamicProps<FormProps>): UseFormReturnType {
       return getForm().setValues(values)
     },
 
-    resetValues() {
-      return getForm().resetValues()
+    resetValues(values?: Recordable) {
+      return getForm().resetValues(values)
     },
 
     async validate(name?: string | string[]) {

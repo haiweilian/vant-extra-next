@@ -15,6 +15,7 @@
 
 <script lang="ts" setup>
 import { reactive } from 'vue'
+import type { PickerOption } from 'vant'
 import type { FormSchema } from '@bfelib/vant-extra'
 
 const model = reactive({
@@ -42,6 +43,15 @@ const schemas: FormSchema[] = [
         { text: '绍兴', value: 'Shaoxing' },
         { text: '湖州', value: 'Huzhou' },
       ],
+      // formatInput(option: PickerOption | undefined) {
+      //   console.log('formatInput option', option)
+      //   if (!option) return option
+      //   return `${option.text}:${option.value}`
+      // },
+      // formatValue(value: string | undefined) {
+      //   console.log('formatValue value', value)
+      //   return value
+      // },
     },
   },
   {
@@ -73,7 +83,7 @@ const schemas: FormSchema[] = [
       arrowDirection: 'down',
     },
     componentProps: {
-      columns: [
+      options: [
         [
           { text: '周一', value: 'Monday' },
           { text: '周二', value: 'Tuesday' },
@@ -145,6 +155,14 @@ const schemas: FormSchema[] = [
           ],
         },
       ],
+      formatInput(options: PickerOption[]) {
+        console.log('formatInput options', options)
+        return options.map((option) => option.text).join('-')
+      },
+      formatValue(values: string[]) {
+        console.log('formatValue values', values)
+        return values
+      },
     },
   },
 ]

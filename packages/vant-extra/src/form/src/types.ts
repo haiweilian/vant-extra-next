@@ -10,21 +10,24 @@ import type {
 import type { Recordable } from '../../utils'
 
 export type FormComponentType =
-  | 'Calendar'
-  | 'Checkbox'
-  | 'DatePicker'
-  | 'DateTimePicker'
+  // source components
   | 'Divider'
   | 'Field'
-  | 'Picker'
-  | 'Radio'
+  | 'Checkbox'
   | 'Rate'
-  | 'Select'
   | 'Slider'
   | 'Stepper'
   | 'Switch'
-  | 'TimePicker'
   | 'Uploader'
+  // extends components
+  | 'Picker'
+  | 'Select'
+  | 'RadioGroup'
+  | 'CheckboxGroup'
+  | 'Calendar'
+  | 'DatePicker'
+  | 'TimePicker'
+  | 'DateTimePicker'
 
 export interface RenderCallbackParams {
   name: string
@@ -110,13 +113,13 @@ export interface FormAction {
    */
   getValues: () => Recordable
   /**
-   * 设置所有表单项当前的值
+   * 设置所有表单项当前的值，只覆盖传入的值
    */
   setValues: (values: Recordable) => void
   /**
-   * 重置所有表单项当前的值
+   * 重置所有表单项当前的值，并设置新的表单值
    */
-  resetValues: () => void
+  resetValues: (values?: Recordable) => void
   /**
    * 验证表单，支持传入一个或多个 name 来验证单个或部分表单项，不传入 name 时，会验证所有表单项
    */

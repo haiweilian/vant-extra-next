@@ -3,5 +3,6 @@
 exports[`Form > render 1`] = `
 "<form class=\\"van-form\\">
   <!---->
+  <!---->
 </form>"
 `;

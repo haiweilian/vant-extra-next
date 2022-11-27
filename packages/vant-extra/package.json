@@ -1,6 +1,6 @@
 {
   "name": "@bfelib/vant-extra",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "Vant extension components.",
   "main": "lib/index.js",
   "module": "es/index.mjs",

@@ -5,7 +5,7 @@ import { isSameValue } from 'vant/es/utils'
 import { isString, isArray, isFunction, cloneDeep, omit } from 'lodash-es'
 import { useExpose } from 'vant/es/composables/use-expose'
 import { createNamespace, type Recordable } from '../../utils'
-import { formComponentMap } from './form-component'
+import { formComponentMap, formExtendsComponent } from './form-component'
 import { getFieldProps, getComponentProps } from './utils'
 import { useFormAction } from './form-use-action'
 import { formProps } from './props'
@@ -154,7 +154,13 @@ export default defineComponent({
           v-slots={{
             input: () => (
               // @ts-ignore
-              <FormItem v-model={formModel[schema.name]} schema={schema} />
+              <FormItem
+                v-model={formModel[schema.name]}
+                schema={schema}
+                {...(formExtendsComponent.includes(schema.component)
+                  ? {}
+                  : getComponentProps(schema))}
+              />
             ),
           }}
           {...getFieldProps(schema)}
@@ -167,6 +173,7 @@ export default defineComponent({
         ref={formElRef}
         {...omit(propsComputed.value, ['schemas', 'modelValue'])}
       >
+        {slots.header?.()}
         {schemaComputed.value.map((schema) => getFormItem(schema))}
         {slots.default?.()}
       </Form>

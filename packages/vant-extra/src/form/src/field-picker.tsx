@@ -1,6 +1,6 @@
 import { defineComponent, ref, watch, computed, nextTick } from 'vue'
 import { Popup, Picker } from 'vant'
-import { omit } from 'lodash-es'
+import { omit, isEmpty, isFunction } from 'lodash-es'
 import type { PropType } from 'vue'
 import type { PickerInstance, PickerConfirmEventParams } from 'vant'
 import { makeArrayProp, type Numeric } from 'vant/es/utils'
@@ -26,24 +26,40 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    const text = ref<string>()
     const model = ref<Numeric[]>(props.modelValue)
+    const options = ref<PickerConfirmEventParams['selectedOptions']>([])
     const [visible, toggle] = useToggle()
 
-    useCustomFieldValue(() => model.value)
-
-    const fields = computed(() =>
-      assignDefaultFields(props.schema.componentProps?.columnsFieldNames)
-    )
-    const pickerRef = ref<PickerInstance>()
-
-    const formatext = (
-      selectedOptions: PickerConfirmEventParams['selectedOptions']
-    ) => {
-      return selectedOptions
-        .map((option) => option?.[fields.value.text])
-        .join('/')
+    const formatInput = () => {
+      const format = props.schema.componentProps?.formatInput
+      if (isFunction(format)) {
+        return format(options.value)
+      }
+      const text = options.value.map((option) => option?.[fields.value.text])
+      return text.join('/')
     }
+
+    const formatValue = () => {
+      const format = props.schema.componentProps?.formatValue
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      return model.value ?? []
+    }
+
+    useCustomFieldValue(formatValue)
+
+    const fields = computed(() => {
+      return assignDefaultFields(props.schema.componentProps?.columnsFieldNames)
+    })
+    const columns = computed(() => {
+      return (
+        props.schema.componentProps?.options ||
+        props.schema.componentProps?.columns ||
+        []
+      )
+    })
+    const pickerRef = ref<PickerInstance>()
 
     const onConfirm = ({
       selectedValues,
@@ -52,19 +68,24 @@ export default defineComponent({
       toggle(false)
 
       model.value = selectedValues
+      options.value = selectedOptions
       emit('update:modelValue', selectedValues)
-
-      text.value = formatext(selectedOptions)
     }
 
     watch(
       () => [props.modelValue, props.schema],
       async () => {
-        await nextTick()
-        if (!pickerRef.value) return
-        model.value = props.modelValue
-        await nextTick()
-        text.value = formatext(pickerRef.value.getSelectedOptions())
+        if (isEmpty(props.modelValue)) {
+          await nextTick()
+          model.value = []
+          options.value = []
+        } else {
+          await nextTick()
+          model.value = props.modelValue
+          if (!pickerRef.value) return
+          await nextTick()
+          options.value = pickerRef.value.getSelectedOptions()
+        }
       },
       {
         deep: true,
@@ -78,7 +99,7 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={text.value}
+          value={formatInput()}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
@@ -92,13 +113,13 @@ export default defineComponent({
           <Picker
             ref={pickerRef}
             title={props.schema.label as string}
-            {...omit(getComponentProps(props.schema), ['options'])}
-            columns={
-              props.schema.componentProps?.options ||
-              props.schema.componentProps?.columns ||
-              []
-            }
-            modelValue={model.value}
+            {...omit(getComponentProps(props.schema), [
+              'options',
+              'formatInput',
+              'formatValue',
+            ])}
+            columns={columns.value}
+            modelValue={isEmpty(model.value) ? undefined : model.value}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

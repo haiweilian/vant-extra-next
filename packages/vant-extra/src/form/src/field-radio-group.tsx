@@ -5,7 +5,7 @@ import { createNamespace } from '../../utils'
 import { getComponentProps } from './utils'
 import type { FormSchema } from './types'
 
-const [name] = createNamespace('field-radio')
+const [name] = createNamespace('field-radio-group')
 
 export interface RadioOptions {
   text: number | string
@@ -33,7 +33,7 @@ export default defineComponent({
       <RadioGroup {...omit(getComponentProps(props.schema), ['options'])}>
         <Space wrap>
           {options.value.map((item) => (
-            <Radio name={item.value} disabled={item.disabled}>
+            <Radio key={item.value} name={item.value} disabled={item.disabled}>
               {item.text}
             </Radio>
           ))}

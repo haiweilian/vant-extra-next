@@ -1,6 +1,6 @@
 import { defineComponent, ref, watch, computed } from 'vue'
 import { Popup, Picker } from 'vant'
-import { omit } from 'lodash-es'
+import { omit, isFunction } from 'lodash-es'
 import type { PropType } from 'vue'
 import type { PickerOption, PickerConfirmEventParams } from 'vant'
 import { numericProp, type Numeric } from 'vant/es/utils'
@@ -26,23 +26,38 @@ export default defineComponent({
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    const text = ref<string>()
     const model = ref<Numeric | undefined>(props.modelValue!)
+    const options = ref<PickerOption>()
     const [visible, toggle] = useToggle()
 
-    useCustomFieldValue(() => model.value)
-
-    const fields = computed(() =>
-      assignDefaultFields(props.schema.componentProps?.columnsFieldNames)
-    )
-
-    const formatext = (
-      selectedOptions: PickerConfirmEventParams['selectedOptions']
-    ) => {
-      return selectedOptions
-        .map((option) => option?.[fields.value.text])
-        .join('/')
+    const formatInput = () => {
+      const format = props.schema.componentProps?.formatInput
+      if (isFunction(format)) {
+        return format(options.value)
+      }
+      return options.value?.[fields.value.text]
     }
+
+    const formatValue = () => {
+      const format = props.schema.componentProps?.formatValue
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      return model.value ?? ''
+    }
+
+    useCustomFieldValue(formatValue)
+
+    const fields = computed(() => {
+      return assignDefaultFields(props.schema.componentProps?.columnsFieldNames)
+    })
+    const columns = computed(() => {
+      return (
+        props.schema.componentProps?.options ||
+        props.schema.componentProps?.columns ||
+        []
+      )
+    })
 
     const onConfirm = ({
       selectedValues,
@@ -51,23 +66,16 @@ export default defineComponent({
       toggle(false)
 
       model.value = selectedValues[0]
+      options.value = selectedOptions[0]
       emit('update:modelValue', selectedValues[0])
-
-      text.value = formatext(selectedOptions)
     }
 
     watch(
       () => [props.modelValue, props.schema],
       async () => {
         model.value = props.modelValue
-        const columns: PickerOption[] =
-          props.schema.componentProps?.options ||
-          props.schema.componentProps?.columns ||
-          []
-        text.value = formatext(
-          columns.filter(
-            (item) => item[fields.value.value] === props.modelValue
-          )
+        options.value = columns.value.find(
+          (item: any) => item[fields.value.value] === props.modelValue
         )
       },
       {
@@ -82,7 +90,7 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={text.value}
+          value={formatInput()}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
@@ -94,13 +102,13 @@ export default defineComponent({
         >
           <Picker
             title={props.schema.label as string}
-            {...omit(getComponentProps(props.schema), ['options'])}
-            columns={
-              props.schema.componentProps?.options ||
-              props.schema.componentProps?.columns ||
-              []
-            }
-            modelValue={model.value ? [model.value] : []}
+            {...omit(getComponentProps(props.schema), [
+              'options',
+              'formatInput',
+              'formatValue',
+            ])}
+            columns={columns.value}
+            modelValue={model.value ? [model.value] : undefined}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

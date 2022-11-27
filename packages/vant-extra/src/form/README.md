@@ -20,13 +20,13 @@ permalink: /components/form
 
 ## 选择器表单
 
-结合 `Field`、`Popup` 和 `Picker` 组件的组合实现绑定与回显。添加 `Select` 组件实现下拉单选选择。
+结合 `Field`、`Popup` 和 `Picker` 组件的组合实现绑定与回显。
 
 <demo src="./__demos__/picker.vue"></demo>
 
 ## 时间表单
 
-结合 `Field`、`Popup` 和 `DatePicker/TimePicker` 组件统一化渲染的时间格式。添加 `DateTimePicker` 组件实现日期时间选择。
+结合 `Field`、`Popup` 和 `DatePicker/TimePicker` 组件统一化渲染的时间格式。
 
 <demo src="./__demos__/datetime.vue"></demo>
 
@@ -137,13 +137,13 @@ export interface FormAction {
    */
   getValues: () => Recordable
   /**
-   * 设置所有表单项当前的值
+   * 设置所有表单项当前的值，只覆盖传入的值
    */
   setValues: (values: Recordable) => void
   /**
-   * 重置所有表单项当前的值
+   * 重置所有表单项当前的值，并设置新的表单值
    */
-  resetValues: () => void
+  resetValues: (values?: Recordable) => void
   /**
    * 验证表单，支持传入一个或多个 name 来验证单个或部分表单项，不传入 name 时，会验证所有表单项
    */
@@ -169,7 +169,7 @@ export interface FormAction {
    */
   resetSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
   /**
-   * 更新 Schema，支持一个或多个，通过 name 对比深度合并
+   * 更新 Schema，使用深度合并支持一个或多个
    */
   updateSchema: (schemas: Partial<FormSchema> | Partial<FormSchema>[]) => void
   /**

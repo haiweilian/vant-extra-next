@@ -1,4 +1,5 @@
 import { defineComponent, ref, watch, type PropType } from 'vue'
+import { omit, isString, isArray, isFunction } from 'lodash-es'
 import { Popup, DatePicker, type PickerConfirmEventParams } from 'vant'
 import { useToggle, useCustomFieldValue } from '@vant/use'
 import { createNamespace } from '../../utils'
@@ -15,28 +16,51 @@ export default defineComponent({
       type: Object as PropType<FormSchema>,
       required: true,
     },
-    modelValue: String,
+    modelValue: [String, Array],
   },
 
   emits: ['update:modelValue'],
 
   setup(props, { emit }) {
-    const model = ref<string | undefined>(props.modelValue)
+    const model = ref<string[]>([])
     const [visible, toggle] = useToggle()
 
-    useCustomFieldValue(() => model.value)
+    const formatInput = () => {
+      const format = props.schema.componentProps?.formatInput
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      return model.value.join('-')
+    }
+
+    const formatValue = () => {
+      const format = props.schema.componentProps?.formatValue
+      if (isFunction(format)) {
+        return format(model.value)
+      }
+      return model.value.join('-')
+    }
+
+    useCustomFieldValue(formatValue)
 
     const onConfirm = ({ selectedValues }: PickerConfirmEventParams) => {
       toggle(false)
 
-      model.value = selectedValues.join('-')
-      emit('update:modelValue', model.value)
+      model.value = selectedValues as string[]
+      emit('update:modelValue', formatValue())
     }
 
     watch(
       () => props.modelValue,
       (newVal) => {
-        model.value = newVal
+        if (isArray(newVal)) {
+          model.value = newVal as string[]
+        } else if (isString(newVal)) {
+          model.value = [...newVal.matchAll(/\d+/g)].map((item) => item[0])
+        }
+      },
+      {
+        immediate: true,
       }
     )
 
@@ -46,7 +70,7 @@ export default defineComponent({
           type="text"
           class="van-field__control"
           readonly
-          value={model.value}
+          value={formatInput()}
           disabled={props.schema.disabled}
           placeholder={props.schema.placeholder}
           onClick={() => toggle(!props.schema.disabled)}
@@ -58,8 +82,11 @@ export default defineComponent({
         >
           <DatePicker
             title={props.schema.label as string}
-            {...getComponentProps(props.schema)}
-            modelValue={model.value ? model.value.split('-') : []}
+            {...omit(getComponentProps(props.schema), [
+              'formatInput',
+              'formatValue',
+            ])}
+            modelValue={model.value}
             onCancel={() => toggle(false)}
             onConfirm={onConfirm}
           />

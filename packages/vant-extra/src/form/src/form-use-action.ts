@@ -39,11 +39,12 @@ export function useFormAction({
     })
   }
 
-  function resetValues() {
+  function resetValues(values?: Recordable) {
     Object.keys(formModel).forEach((key) => {
       const schema = schemaComputed.value.find((item) => item.name === key)
       schema && delete formModel[key]
     })
+    values && setValues(values)
     nextTick(() => resetValidation())
   }
 

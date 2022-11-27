@@ -26,7 +26,7 @@ const schemas: FormSchema[] = [
   {
     label: '多选框',
     name: 'checkbox',
-    component: 'Checkbox',
+    component: 'CheckboxGroup',
     required: true,
     componentProps: {
       options: [
@@ -49,7 +49,7 @@ const schemas: FormSchema[] = [
   {
     label: '单选框',
     name: 'radio',
-    component: 'Radio',
+    component: 'RadioGroup',
     required: true,
     componentProps: {
       options: [
