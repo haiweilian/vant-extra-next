@@ -11,6 +11,7 @@ exports[`Card.vue > test component slots 1`] = `
     <!---->
   </div>
   <div class=\\"vae-card__title\\">This is title</div>
-  <div class=\\"vae-card__desc\\">This is desc</div>This is content<div class=\\"vae-card__extra\\">This is extra</div>
+  <div class=\\"vae-card__desc\\">This is desc</div>
+  <div class=\\"vae-card__body\\">This is content</div>
 </div>"
 `;

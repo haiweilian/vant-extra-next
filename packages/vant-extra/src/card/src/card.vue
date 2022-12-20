@@ -10,20 +10,16 @@
       />
     </slot>
 
-    <slot name="title">
-      <div v-if="title" :class="bem('title')">{{ title }}</div>
-    </slot>
+    <div v-if="title || $slots.title" :class="bem('title')">
+      <slot name="title">{{ title }}</slot>
+    </div>
 
-    <slot name="desc">
-      <div v-if="desc" :class="bem('desc')">
-        {{ desc }}
-      </div>
-    </slot>
+    <div v-if="desc || $slots.desc" :class="bem('desc')">
+      <slot name="desc">{{ desc }}</slot>
+    </div>
 
-    <slot></slot>
-
-    <div v-if="$slots.extra" :class="bem('extra')">
-      <slot name="extra" />
+    <div v-if="$slots.default" :class="bem('body')">
+      <slot></slot>
     </div>
   </div>
 </template>

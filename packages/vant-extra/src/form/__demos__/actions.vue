@@ -39,7 +39,7 @@ const schemas: FormSchema[] = [
   {
     label: '性别',
     name: 'sex',
-    component: 'Select',
+    component: 'PickerSingle',
     required: true,
     componentProps: {
       options: [

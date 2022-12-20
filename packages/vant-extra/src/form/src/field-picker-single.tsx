@@ -10,7 +10,7 @@ import { createNamespace } from '../../utils'
 import { getPopupProps, getComponentProps } from './utils'
 import type { FormSchema } from './types'
 
-const [name] = createNamespace('field-select')
+const [name] = createNamespace('field-picker-single')
 
 export default defineComponent({
   name,

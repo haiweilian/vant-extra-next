@@ -44,7 +44,6 @@ permalink: /components/card
 | title   | 自定义标题     |
 | desc    | 自定义描述     |
 | image   | 自定义图片     |
-| extra   | 自定义底部内容 |
 | default | 自定义主内容   |
 
 ## 类型定义
@@ -74,8 +73,8 @@ import type { CardProps } from '@bfelib/vant-extra'
 | --vae-card-title-font-size | var(--van-font-size-lg)                               |
 | --vae-card-title-color     | var(--van-text-color)                                 |
 | --vae-card-desc-padding    | 0 var(--van-padding-sm)                               |
-| --vae-card-desc-margin     | var(--van-padding-md) 0 0 0                           |
+| --vae-card-desc-margin     | var(--van-padding-sm) 0 0 0                           |
 | --vae-card-desc-font-size  | var(--van-font-size-md)                               |
 | --vae-card-desc-color      | var(--van-text-color-2)                               |
-| --vae-card-extra-padding   | 0 var(--van-padding-sm)                               |
-| --vae-card-extra-margin    | var(--van-padding-lg) 0 0 0                           |
+| --vae-card-body-padding    | 0 var(--van-padding-sm)                               |
+| --vae-card-body-margin     | var(--van-padding-sm) 0 0 0                           |

@@ -22,13 +22,13 @@ permalink: /components/descriptions
 
 ### Descriptions Props
 
-| 属性   | 说明                     | 类型               | 默认值 |
-| ------ | ------------------------ | ------------------ | ------ |
-| column | 一行的数量               | number             | 2      |
-| colon  | 是否添加冒号             | boolean            | true   |
-| title  | 标题文本，显示在左上方   | string             | -      |
-| extra  | 操作区文本，显示在右上方 | string             | -      |
-| size   | 描述列表尺寸             | 'normal' / 'small' | normal |
+| 属性   | 说明                     | 类型           | 默认值 |
+| ------ | ------------------------ | -------------- | ------ |
+| column | 一行的数量               | number         | 2      |
+| colon  | 是否添加冒号             | boolean        | true   |
+| title  | 标题文本，显示在左上方   | string         | -      |
+| extra  | 操作区文本，显示在右上方 | string         | -      |
+| size   | 描述列表尺寸             | normal / small | normal |
 
 ### Descriptions Slots
 
@@ -75,7 +75,7 @@ import type {
 | --vae-descriptions-header-margin         | 0 0 var(--van-padding-md) 0   |
 | --vae-descriptions-title-font-size       | var(--van-font-size-lg)       |
 | --vae-descriptions-title-color           | var(--van-text-color)         |
-| --vae-descriptions-body-background       | var(--van-background-2)       |
+| --vae-descriptions-body-background       | transparent                   |
 | --vae-descriptions-cell-font-size        | var(--van-font-size-md)       |
 | --vae-descriptions-cell-padding          | 0 0 var(--van-padding-sm) 0   |
 | --vae-descriptions-label-color           | var(--van-text-color-2)       |

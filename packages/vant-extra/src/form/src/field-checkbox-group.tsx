@@ -1,4 +1,4 @@
-import { defineComponent, ref, type PropType } from 'vue'
+import { defineComponent, computed, type PropType } from 'vue'
 import { CheckboxGroup, Checkbox, Space } from 'vant'
 import { omit } from 'lodash-es'
 import { createNamespace } from '../../utils'
@@ -25,9 +25,9 @@ export default defineComponent({
   },
 
   setup(props) {
-    const options = ref<CheckboxOptions[]>(
-      props.schema.componentProps?.options || []
-    )
+    const options = computed<CheckboxOptions[]>(() => {
+      return props.schema.componentProps?.options || []
+    })
 
     return () => (
       <CheckboxGroup {...omit(getComponentProps(props.schema), ['options'])}>

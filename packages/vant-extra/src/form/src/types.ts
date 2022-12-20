@@ -1,5 +1,4 @@
 import type { ComponentPublicInstance, VNode } from 'vue'
-import type { Numeric } from 'vant/es/utils'
 import type {
   FieldRule,
   FieldProps,
@@ -21,7 +20,7 @@ export type FormComponentType =
   | 'Uploader'
   // extends components
   | 'Picker'
-  | 'Select'
+  | 'PickerSingle'
   | 'RadioGroup'
   | 'CheckboxGroup'
   | 'Calendar'
@@ -46,7 +45,7 @@ export interface FormSchema {
   /**
    * 输入框左侧文本
    */
-  label: Numeric
+  label: string
   /**
    * 名称，作为提交表单时的标识符
    */

@@ -27,9 +27,9 @@ const model = reactive({
 
 const schemas: FormSchema[] = [
   {
-    label: '下拉选择',
+    label: '单选选择器',
     name: 'select',
-    component: 'Select',
+    component: 'PickerSingle',
     required: true,
     fieldProps: {
       isLink: true,

@@ -1,4 +1,4 @@
-import { defineComponent, ref, type PropType } from 'vue'
+import { defineComponent, computed, type PropType } from 'vue'
 import { RadioGroup, Radio, Space } from 'vant'
 import { omit } from 'lodash-es'
 import { createNamespace } from '../../utils'
@@ -25,9 +25,9 @@ export default defineComponent({
   },
 
   setup(props) {
-    const options = ref<RadioOptions[]>(
-      props.schema.componentProps?.options || []
-    )
+    const options = computed<RadioOptions[]>(() => {
+      return props.schema.componentProps?.options || []
+    })
 
     return () => (
       <RadioGroup {...omit(getComponentProps(props.schema), ['options'])}>

@@ -12,11 +12,11 @@ body {
   --vae-card-title-font-size: var(--van-font-size-lg);
   --vae-card-title-color: var(--van-text-color);
   --vae-card-desc-padding: 0 var(--van-padding-sm);
-  --vae-card-desc-margin: var(--van-padding-md) 0 0 0;
+  --vae-card-desc-margin: var(--van-padding-sm) 0 0 0;
   --vae-card-desc-font-size: var(--van-font-size-md);
   --vae-card-desc-color: var(--van-text-color-2);
-  --vae-card-extra-padding: 0 var(--van-padding-sm);
-  --vae-card-extra-margin: var(--van-padding-lg) 0 0 0;
+  --vae-card-body-padding: 0 var(--van-padding-sm);
+  --vae-card-body-margin: var(--van-padding-sm) 0 0 0;
 }
 
 .vae-card {
@@ -52,8 +52,8 @@ body {
     word-break: break-all;
   }
 
-  &__extra {
-    padding: var(--vae-card-extra-padding);
-    margin: var(--vae-card-extra-margin);
+  &__body {
+    padding: var(--vae-card-body-padding);
+    margin: var(--vae-card-body-margin);
   }
 }
