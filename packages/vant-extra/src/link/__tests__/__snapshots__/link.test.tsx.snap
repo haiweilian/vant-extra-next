@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`Link > render 1`] = `"<a class=\\"vae-link vae-link--default vae-link--underline-always\\"></a>"`;

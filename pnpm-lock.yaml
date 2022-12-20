@@ -55,13 +55,13 @@ importers:
       anywhere: ^1.6.0
       rimraf: ^3.0.2
       unplugin-vue-define-options: ^0.10.0
-      vant: 4.0.0-rc.9
+      vant: ^4.0.0
       vue: ^3.2.37
       vuepress: 2.0.0-beta.49
     dependencies:
       '@bfelib/vant-extra': link:../packages/vant-extra
       '@vant/touch-emulator': 1.4.0
-      vant: 4.0.0-rc.9_vue@3.2.37
+      vant: 4.0.1_vue@3.2.37
     devDependencies:
       '@bfelib/vuepress-plugins': link:../packages/vuepress-plugins
       '@vitejs/plugin-vue-jsx': 1.3.10
@@ -169,10 +169,11 @@ importers:
       typescript: ^4.7.4
       unplugin-vue-components: ^0.22.4
       unplugin-vue-define-options: ^0.10.0
-      vant: 4.0.0-rc.9
+      vant: ^4.0.0
       vite: ^3.0.5
       vitest: ^0.22.1
       vue: ^3.2.37
+      vue-router: ^4.1.6
       vue-tsc: ^0.40.1
     dependencies:
       '@vant/use': 1.4.3
@@ -213,10 +214,11 @@ importers:
       typescript: 4.7.4
       unplugin-vue-components: 0.22.4_kh4fnvm2fcyehmlskys2tp4cce
       unplugin-vue-define-options: 0.10.0_kh4fnvm2fcyehmlskys2tp4cce
-      vant: 4.0.0-rc.9_vue@3.2.37
+      vant: 4.0.1_vue@3.2.37
       vite: 3.0.9_sass@1.54.5
       vitest: 0.22.1_7d3qez7e4mhahbjelprohdafru
       vue: 3.2.37
+      vue-router: 4.1.6_vue@3.2.37
       vue-tsc: 0.40.1_typescript@4.7.4
 
   packages/vuepress-plugins:
@@ -1769,6 +1771,10 @@ packages:
 
   /@vue/devtools-api/6.2.1:
     resolution: {integrity: sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==}
+
+  /@vue/devtools-api/6.4.5:
+    resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
+    dev: true
 
   /@vue/reactivity-transform/3.2.37:
     resolution: {integrity: sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg==}
@@ -8560,8 +8566,8 @@ packages:
     engines: {node: '>= 0.10'}
     dev: true
 
-  /vant/4.0.0-rc.9_vue@3.2.37:
-    resolution: {integrity: sha512-NGat+3ZEGtOmgRTCjhZDC6LNjkYFkbz8ndjvWyZOjdkxqEXyZg8PrdjS/JNAPo7P7g6YkGcip1Ghyh8mBxua+Q==}
+  /vant/4.0.1_vue@3.2.37:
+    resolution: {integrity: sha512-HfYwP0A2lLbJrXlojzVF/asugpQ24nfQYgTBsXTai+weOoJCubT+GJ0owVDMVn7CVlZbcKknQpscU9dGJuqvXQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -8782,6 +8788,15 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.2.1
       vue: 3.2.37
+
+  /vue-router/4.1.6_vue@3.2.37:
+    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.4.5
+      vue: 3.2.37
+    dev: true
 
   /vue-tsc/0.40.1_typescript@4.7.4:
     resolution: {integrity: sha512-Z+3rlp/6TrtKvLuaFYwBn03zrdinMR6lBb3mWBJtDA+KwlRu+I4eMoqC1qT9D7i/29u0Bw58dH7ErjMpNLN9bQ==}

@@ -30,6 +30,10 @@ export const zh: SidebarConfig = {
           text: 'Descriptions 描述列表',
           link: '/components/descriptions/',
         },
+        {
+          text: 'Link 链接',
+          link: '/components/link/',
+        },
       ],
     },
   ],
