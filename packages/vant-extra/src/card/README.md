@@ -51,7 +51,7 @@ permalink: /components/card
 组件导出以下类型定义。
 
 ```ts
-import type { CardProps } from '@bfelib/vant-extra'
+import type { CardProps } from 'vant-extra-next'
 ```
 
 ## 样式变量

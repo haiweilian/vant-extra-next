@@ -24,10 +24,10 @@ const reComponentName: ReComponentName = (title) => {
 
 /**
  * 重写文档路径
- * @example src/back-top/README.md -> https://github.com/bfelib/vant-extra/components/back-top/
+ * @example src/back-top/README.md -> https://github.com/haiweilian/vant-extra-next/components/back-top/
  */
 const reDocUrl: ReDocUrl = (_, header, path) => {
-  const docs = 'https://github.com/bfelib/vant-extra/components/'
+  const docs = 'https://github.com/haiweilian/vant-extra-next/components/'
   const name = path?.split('/')[1] + '/'
   const _header = header
     ? header.replace(/[ ]+/g, '-').toLowerCase()

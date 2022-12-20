@@ -6,7 +6,7 @@
 
 <script lang="tsx" setup>
 import { ref } from 'vue'
-import type { FormSchema } from '@bfelib/vant-extra'
+import type { FormSchema } from 'vant-extra-next'
 
 const schemas = ref<FormSchema[]>([
   {

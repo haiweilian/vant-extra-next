@@ -39,16 +39,16 @@ function getSideEffects(
   }
 
   if (importStyle === 'scss') {
-    return `@bfelib/vant-extra/${moduleType}/${dirName}/style/scss`
+    return `vant-extra-next/${moduleType}/${dirName}/style/scss`
   } else {
-    return `@bfelib/vant-extra/${moduleType}/${dirName}/style/index`
+    return `vant-extra-next/${moduleType}/${dirName}/style/index`
   }
 }
 
 /**
  * Resolver for Vae
  *
- * @link https://github.com/bfelib/vant-extra
+ * @link https://github.com/haiweilian/vant-extra-next
  */
 export function VaeResolver(
   options: VaeResolverOptions = {}
@@ -60,7 +60,7 @@ export function VaeResolver(
         const partialName = name.slice(3)
         return {
           name: partialName,
-          from: `@bfelib/vant-extra/${moduleType}`,
+          from: `vant-extra-next/${moduleType}`,
           sideEffects: getSideEffects(kebabCase(partialName), options),
         }
       }

@@ -1,5 +1,5 @@
 {
-  "name": "@bfelib/root",
+  "name": "@bfehub/root",
   "private": true,
   "version": "1.0.0",
   "description": "Vue components.",
@@ -7,11 +7,11 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "commit": "npx git-cz",
-    "ui:gen": "pnpm --filter=vant-extra gen",
-    "ui:build": "pnpm --filter=vant-extra build",
-    "ui:test": "pnpm --filter=vant-extra test",
-    "ui:test:ui": "pnpm --filter=vant-extra test:ui",
-    "ui:test:coverage": "pnpm --filter=vant-extra test:coverage",
+    "ui:gen": "pnpm --filter=vant-extra-next gen",
+    "ui:build": "pnpm --filter=vant-extra-next build",
+    "ui:test": "pnpm --filter=vant-extra-next test",
+    "ui:test:ui": "pnpm --filter=vant-extra-next test:ui",
+    "ui:test:coverage": "pnpm --filter=vant-extra-next test:coverage",
     "docs:dev": "pnpm --filter=docs docs:dev",
     "docs:clean": "pnpm --filter=docs docs:clean",
     "docs:build": "pnpm --filter=docs docs:build",
@@ -24,12 +24,12 @@
     "release": "pnpm --recursive --stream test:coverage && pnpm --recursive --stream build && changeset publish"
   },
   "dependencies": {
-    "@bfelib/vant-extra": "workspace:*",
-    "vue": "^3.2.0"
+    "vue": "^3.2.0",
+    "vant-extra-next": "workspace:*"
   },
   "devDependencies": {
-    "@bfelib/eslint-config": "workspace:*",
-    "@bfelib/stylelint-config": "workspace:*",
+    "@bfehub/eslint-config": "workspace:*",
+    "@bfehub/stylelint-config": "workspace:*",
     "@changesets/changelog-github": "^0.4.6",
     "@changesets/cli": "^2.24.4",
     "@commitlint/cli": "^17.0.3",

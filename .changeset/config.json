@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
   "changelog": [
     "@changesets/changelog-github",
-    { "repo": "bfelib/vant-extra" }
+    { "repo": "haiweilian/vant-extra-next" }
   ],
   "commit": false,
   "fixed": [],
@@ -11,9 +11,9 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@bfelib/docs",
-    "@bfelib/eslint-config",
-    "@bfelib/stylelint-config",
-    "@bfelib/vuepress-plugins"
+    "@bfehub/docs",
+    "@bfehub/eslint-config",
+    "@bfehub/stylelint-config",
+    "@bfehub/vuepress-plugins"
   ]
 }

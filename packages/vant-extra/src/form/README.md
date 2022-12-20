@@ -190,5 +190,5 @@ import type {
   FormAction,
   FormInstance,
   FormComponentType,
-} from '@bfelib/vant-extra'
+} from 'vant-extra-next'
 ```

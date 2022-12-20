@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
 import { reactive } from 'vue'
-import type { FormSchema } from '@bfelib/vant-extra'
+import type { FormSchema } from 'vant-extra-next'
 
 const model = reactive({
   calendar: '2022-10-10',

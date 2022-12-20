@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import type { PickerOption } from 'vant'
-import type { FormSchema } from '@bfelib/vant-extra'
+import type { FormSchema } from 'vant-extra-next'
 
 const model = reactive({
   select: 'Shaoxing',

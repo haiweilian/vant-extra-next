@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm, type FormSchema } from '@bfelib/vant-extra'
+import { useForm, type FormSchema } from 'vant-extra-next'
 
 const schemas: FormSchema[] = [
   {

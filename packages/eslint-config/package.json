@@ -1,5 +1,5 @@
 {
-  "name": "@bfelib/eslint-config",
+  "name": "@bfehub/eslint-config",
   "private": true,
   "main": "index.js",
   "version": "1.0.0",

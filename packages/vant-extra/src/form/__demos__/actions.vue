@@ -26,7 +26,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { FormSchema, FormAction } from '@bfelib/vant-extra'
+import type { FormSchema, FormAction } from 'vant-extra-next'
 
 const formRef = ref<FormAction>()
 const schemas: FormSchema[] = [

@@ -5,7 +5,7 @@ import type { Plugin, HmrContext } from 'vite'
 // https://cn.vitejs.dev/guide/api-plugin.html#handlehotupdate
 export const vitePageHMR = (app: App): Plugin => {
   return {
-    name: '@bfelib/vuepress-plugin-code-block:hmr',
+    name: '@bfehub/vuepress-plugin-code-block:hmr',
     enforce: 'post',
     async handleHotUpdate(ctx: HmrContext) {
       for (const module of ctx.modules) {

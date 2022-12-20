@@ -1,13 +1,13 @@
 import { defineUserConfig, defaultTheme, viteBundler } from 'vuepress'
-import { codeBlockPlugin } from '@bfelib/vuepress-plugins'
+import { codeBlockPlugin } from '@bfehub/vuepress-plugins'
 import vueDefineOptions from 'unplugin-vue-define-options/vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { generatePaths } from '@bfelib/vant-extra/scripts/build/utils/rollup'
+import { generatePaths } from 'vant-extra-next/scripts/build/utils/rollup'
 import * as navbar from './configs/navbar'
 import * as sidebar from './configs/sidebar'
 
 export default defineUserConfig({
-  base: '/vant-extra/',
+  base: '/vant-extra-next/',
 
   pagePatterns: [
     '**/*.md',
@@ -20,7 +20,7 @@ export default defineUserConfig({
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: 'vant-extra',
+      title: 'vant-extra-next',
       description: '基于 Vant 4.x 二次开发的业务组件',
     },
   },
@@ -47,7 +47,7 @@ export default defineUserConfig({
   theme: defaultTheme({
     logo: 'https://fastly.jsdelivr.net/npm/@vant/assets/logo.png',
 
-    repo: 'https://github.com/bfelib/vant-extra',
+    repo: 'https://github.com/haiweilian/vant-extra-next',
 
     locales: {
       '/': {
@@ -66,7 +66,7 @@ export default defineUserConfig({
   }),
 
   plugins: [
-    // @bfelib/vuepress-plugins
+    // @bfehub/vuepress-plugins
     codeBlockPlugin(),
   ],
 })

@@ -1,4 +1,4 @@
 module.exports = {
   root: true,
-  extends: '@bfelib/stylelint-config',
+  extends: '@bfehub/stylelint-config',
 }

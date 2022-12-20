@@ -45,7 +45,7 @@ permalink: /components/link
 组件导出以下类型定义。
 
 ```ts
-import type { LinkProps } from '@bfelib/vant-extra'
+import type { LinkProps } from 'vant-extra-next'
 ```
 
 ## 样式变量

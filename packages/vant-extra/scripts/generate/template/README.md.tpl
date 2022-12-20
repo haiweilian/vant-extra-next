@@ -37,7 +37,7 @@ permalink: /components/<%= name %>
 组件导出以下类型定义。
 
 ```ts
-import type { <%= pascalCaseName %>Props } from '@bfelib/vant-extra'
+import type { <%= pascalCaseName %>Props } from 'vant-extra-next'
 ```
 
 ## 样式变量

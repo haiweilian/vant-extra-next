@@ -60,7 +60,7 @@ permalink: /components/descriptions
 import type {
   DescriptionsProps,
   DescriptionsItemProps,
-} from '@bfelib/vant-extra'
+} from 'vant-extra-next'
 ```
 
 ## 样式变量

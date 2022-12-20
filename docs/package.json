@@ -1,5 +1,5 @@
 {
-  "name": "@bfelib/docs",
+  "name": "@bfehub/docs",
   "private": true,
   "version": "1.0.0",
   "description": "Vue components docs.",
@@ -10,12 +10,12 @@
     "docs:serve": "anywhere -s -h localhost -d .vuepress/dist"
   },
   "dependencies": {
-    "@bfelib/vant-extra": "workspace:*",
     "@vant/touch-emulator": "^1.4.0",
-    "vant": "^4.0.0"
+    "vant": "^4.0.0",
+    "vant-extra-next": "workspace:*"
   },
   "devDependencies": {
-    "@bfelib/vuepress-plugins": "workspace:*",
+    "@bfehub/vuepress-plugins": "workspace:*",
     "@vitejs/plugin-vue-jsx": "1.3.10",
     "@vuepress/client": "2.0.0-beta.49",
     "anywhere": "^1.6.0",

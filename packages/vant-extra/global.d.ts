@@ -3,13 +3,13 @@ export {}
 // Helper for Volar
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    VaeBackTop: typeof import('@bfelib/vant-extra')['BackTop']
-    VaeCard: typeof import('@bfelib/vant-extra')['Card']
-    VaeForm: typeof import('@bfelib/vant-extra')['Form']
-    VaeImage: typeof import('@bfelib/vant-extra')['Image']
-    VaeImageGroup: typeof import('@bfelib/vant-extra')['ImageGroup']
-    VaeDescriptions: typeof import('@bfelib/vant-extra')['Descriptions']
-    VaeDescriptionsItem: typeof import('@bfelib/vant-extra')['DescriptionsItem']
-    VaeLink: typeof import('@bfelib/vant-extra')['Link']
+    VaeBackTop: typeof import('vant-extra-next')['BackTop']
+    VaeCard: typeof import('vant-extra-next')['Card']
+    VaeForm: typeof import('vant-extra-next')['Form']
+    VaeImage: typeof import('vant-extra-next')['Image']
+    VaeImageGroup: typeof import('vant-extra-next')['ImageGroup']
+    VaeDescriptions: typeof import('vant-extra-next')['Descriptions']
+    VaeDescriptionsItem: typeof import('vant-extra-next')['DescriptionsItem']
+    VaeLink: typeof import('vant-extra-next')['Link']
   }
 }
