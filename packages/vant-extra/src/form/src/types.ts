@@ -21,6 +21,8 @@ export type FormComponentType =
   // extends components
   | 'Picker'
   | 'PickerSingle'
+  | 'Checker'
+  | 'CheckerSingle'
   | 'RadioGroup'
   | 'CheckboxGroup'
   | 'Calendar'

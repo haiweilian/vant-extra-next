@@ -12,6 +12,8 @@ import {
 } from 'vant'
 import Picker from './field-picker'
 import PickerSingle from './field-picker-single'
+import Checker from './field-checker'
+import CheckerSingle from './field-checker-single'
 import RadioGroup from './field-radio-group'
 import CheckboxGroup from './field-checkbox-group'
 import Calendar from './field-calendar'
@@ -22,6 +24,8 @@ import DateTimePicker from './field-date-time-picker'
 export const formExtendsComponent = [
   'Picker',
   'PickerSingle',
+  'Checker',
+  'CheckerSingle',
   'RadioGroup',
   'CheckboxGroup',
   'Calendar',
@@ -43,6 +47,8 @@ formComponentMap.set('Uploader', Uploader)
 
 formComponentMap.set('Picker', Picker)
 formComponentMap.set('PickerSingle', PickerSingle)
+formComponentMap.set('Checker', Checker)
+formComponentMap.set('CheckerSingle', CheckerSingle)
 formComponentMap.set('RadioGroup', RadioGroup)
 formComponentMap.set('CheckboxGroup', CheckboxGroup)
 formComponentMap.set('Calendar', Calendar)
