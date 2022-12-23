@@ -1,6 +1,10 @@
 <template>
   <vae-form :schemas="schemas">
-    <template #field_text="{ name }"> {{ name }}：自定义 slot 渲染 </template>
+    <template #field_text="{ name, schema }">
+      <van-field v-bind="schema.fieldProps">
+        <template #input> 自定义 {{ name }} 渲染 </template>
+      </van-field>
+    </template>
   </vae-form>
 </template>
 
@@ -35,8 +39,12 @@ const schemas = ref<FormSchema[]>([
     name: 'field_4',
     component: 'Field',
     required: true,
-    render({ name }) {
-      return <div>{name}：自定义 render 渲染</div>
+    render({ name, schema }) {
+      return (
+        <van-field {...schema.fieldProps}>
+          {{ input: () => `自定义 ${name} 渲染` }}
+        </van-field>
+      )
     },
   },
 ])

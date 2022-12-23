@@ -9,6 +9,10 @@ export const zh: SidebarConfig = {
           text: 'Form 表单',
           link: '/components/form/',
         },
+        {
+          text: 'Checker 勾选选择器',
+          link: '/components/checker/',
+        },
       ],
     },
     {
