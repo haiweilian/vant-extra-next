@@ -11,5 +11,6 @@ declare module '@vue/runtime-core' {
     VaeDescriptions: typeof import('vant-extra-next')['Descriptions']
     VaeDescriptionsItem: typeof import('vant-extra-next')['DescriptionsItem']
     VaeLink: typeof import('vant-extra-next')['Link']
+    VaeChecker: typeof import('vant-extra-next')['Checker']
   }
 }

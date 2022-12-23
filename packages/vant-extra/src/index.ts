@@ -5,6 +5,7 @@ import { Form } from './form'
 import { Image, ImageGroup } from './image'
 import { Descriptions, DescriptionsItem } from './descriptions'
 import { Link } from './link'
+import { Checker } from './checker'
 
 export * from './back-top'
 export * from './card'
@@ -12,6 +13,7 @@ export * from './form'
 export * from './image'
 export * from './descriptions'
 export * from './link'
+export * from './checker'
 
 const components = [
   BackTop,
@@ -22,6 +24,7 @@ const components = [
   Descriptions,
   DescriptionsItem,
   Link,
+  Checker,
 ]
 
 export function install(app: App) {

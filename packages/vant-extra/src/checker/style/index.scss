@@ -1,0 +1,57 @@
+:root {
+  --vae-checker-background: var(--van-background-2);
+  --vae-checker-columns-background: var(--van-background-2);
+  --vae-checker-loading-icon-color: var(--van-primary-color);
+  --vae-checker-loading-mask-color: rgb(255 255 255 / 90%);
+  --vae-checker-active-color: var(--van-primary-color);
+  --vae-checker-disabled-color: var(--van-gray-5);
+}
+
+.van-theme-dark {
+  --vae-checker-columns-background: var(--van-background);
+  --vae-checker-loading-mask-color: rgb(0 0 0 / 60%);
+}
+
+.vae-checker {
+  position: relative;
+  user-select: none;
+  background: var(--vae-checker-background);
+
+  &__columns {
+    position: relative;
+    box-sizing: border-box;
+    height: 220px;
+    overflow-y: auto;
+    background: var(--vae-checker-columns-background);
+  }
+
+  &__cell {
+    background: transparent;
+
+    &--disabled {
+      color: var(--vae-checker-disabled-color);
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon {
+    &--active {
+      line-height: var(--van-cell-line-height);
+      color: var(--vae-checker-active-color);
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vae-checker-loading-icon-color);
+    background: var(--vae-checker-loading-mask-color);
+  }
+}

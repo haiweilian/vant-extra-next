@@ -1,0 +1,6 @@
+import './index.css'
+import 'vant/es/cell/style/index'
+import 'vant/es/cell-group/style/index'
+import 'vant/es/picker/style/index'
+import 'vant/es/loading/style/index'
+import 'vant/es/icon/style/index'
